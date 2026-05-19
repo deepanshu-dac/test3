@@ -1,0 +1,40 @@
+{
+  "id": "22d5aa0f-638b-4bb4-bccf-60d779e28c5f",
+  "name": "my cl",
+  "description": "",
+  "endpoints": [
+    {
+      "id": "507881fb-f443-4865-b1ee-9da6c6b948e2",
+      "name": "Get all characters",
+      "description": "Returns a list of Rick and Morty characters",
+      "method": "GET",
+      "url": "https://rickandmortyapi.com/api/character",
+      "headers": [],
+      "queryParams": [
+        {
+          "key": "page",
+          "value": 1,
+          "enabled": true,
+          "schema": {
+            "type": "integer",
+            "example": 1
+          },
+          "description": "Page number",
+          "required": false
+        }
+      ],
+      "pathParams": [],
+      "sourceSpec": {
+        "apiName": "Rick and Morty Character API Demo",
+        "apiVersion": "1.0.0",
+        "specType": "OAS3",
+        "path": "/character",
+        "originalMethod": "GET"
+      },
+      "createdAt": "2026-05-19T07:13:18.242Z",
+      "updatedAt": "2026-05-19T07:13:18.242Z"
+    }
+  ],
+  "createdAt": "2026-05-19T07:13:34.400Z",
+  "updatedAt": "2026-05-19T07:13:37.291Z"
+}
