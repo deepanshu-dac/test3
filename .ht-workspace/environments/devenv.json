@@ -1,0 +1,16 @@
+{
+  "id": "env-1773410120982",
+  "name": "devEnv",
+  "variables": [
+    {
+      "key": "keyonly",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "key",
+      "value": "value",
+      "enabled": true
+    }
+  ]
+}

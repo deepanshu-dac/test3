@@ -1,0 +1,10 @@
+{
+  "id": "f45304ad-4b06-4525-b919-4de08e0a6b7d",
+  "name": "AddressCollection",
+  "description": "Address search and advanced address search identifies the addresses with meters registered against them.\n\n### This Collection Contains:\n\n- **Address Search:** Fetches all registered addresses with meters\n- **Advanced Address Search:** Fetches and matches addresses from Electricity and Gas industry to show both fuel type addresses.\n    \n\nFor proper responses from the APIs, please use the inputs suggested in the documentation of each API set.",
+  "createdAt": "2026-05-18T12:30:33.045Z",
+  "updatedAt": "2026-05-18T12:30:33.045Z",
+  "sourceType": "OpenAPI",
+  "sourceVersion": "1.0.0",
+  "endpointCount": 6
+}
