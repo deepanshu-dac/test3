@@ -1,0 +1,15 @@
+{
+  "id": "7073eebd-dbf7-4901-98f6-a0ab8834c7cc",
+  "variables": [
+    {
+      "key": "apiVersion",
+      "value": "v2",
+      "enabled": true
+    },
+    {
+      "key": "host",
+      "value": "global.example.com",
+      "enabled": true
+    }
+  ]
+}
