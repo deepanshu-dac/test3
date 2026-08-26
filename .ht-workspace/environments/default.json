@@ -1,5 +1,16 @@
 {
   "id": "default",
   "name": "Default",
-  "variables": []
+  "variables": [
+    {
+      "key": "postId",
+      "value": "101",
+      "enabled": true
+    },
+    {
+      "key": "lastStatus",
+      "value": "201",
+      "enabled": true
+    }
+  ]
 }

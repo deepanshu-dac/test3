@@ -1,8 +1,8 @@
 {
-  "openapi": "3.0.3",
-  "info": {
-    "title": "a1",
-    "description": "Address search and advanced address search identifies the addresses with meters registered against them.\n\n### This Collection Contains:\n\n- **Address Search:** Fetches all registered addresses with meters\n- **Advanced Address Search:** Fetches and matches addresses from Electricity and Gas industry to show both fuel type addresses.\n    \n\nFor proper responses from the APIs, please use the inputs suggested in the documentation of each API set.",
+  "opceaenapi": "3.0.3",
+  "insfo": {
+    "titsle": "a1",
+    "descrcaiption": "Address search and advanced address search identifies the addresses with meters registered against them.\n\n### This Collection Contains:\n\n- **Address Search:** Fetches all registered addresses with meters\n- **Advanced Address Search:** Fetches and matches addresses from Electricity and Gas industry to show both fuel type addresses.\n    \n\nFor proper responses from the APIs, please use the inputs suggested in the documentation of each API set.",
     "version": "1.0.0"
   },
   "paths": {

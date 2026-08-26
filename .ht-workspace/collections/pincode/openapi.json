@@ -1,0 +1,163 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "pincode",
+    "version": "1.0.0",
+    "description": "Free, public, no-auth lookup of Indian post offices by PIN code\nor by post-office (branch) name. Data sourced from India Post.\n"
+  },
+  "servers": [
+    {
+      "url": "https://api.postalpincode.in"
+    }
+  ],
+  "paths": {
+    "/pincode/%7Bpincode%7D": {
+      "get": {
+        "operationId": "getByPincode",
+        "summary": "Find all post offices under a 6-digit PIN code",
+        "parameters": [
+          {
+            "name": "pincode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{5}$",
+              "example": "560001"
+            },
+            "example": "560001"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Always 200; check the Status field for Success vs Error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseList"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ],
+        "x-auth-default": {
+          "key": "x-api-key",
+          "value": "UpdateYpurKeyHere"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResponseList": {
+        "type": "array",
+        "description": "Wrapper array; the API returns exactly one element.",
+        "items": {
+          "$ref": "#/components/schemas/Response"
+        }
+      },
+      "Response": {
+        "type": "object",
+        "required": [
+          "Message",
+          "Status",
+          "PostOffice"
+        ],
+        "properties": {
+          "Message": {
+            "type": "string",
+            "example": "Number of pincode(s) found:1"
+          },
+          "Status": {
+            "type": "string",
+            "enum": [
+              "Success",
+              "Error"
+            ]
+          },
+          "PostOffice": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/PostOffice"
+            }
+          }
+        }
+      },
+      "PostOffice": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "example": "Bangalore GPO"
+          },
+          "Description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "BranchType": {
+            "type": "string",
+            "example": "Head Post Office"
+          },
+          "DeliveryStatus": {
+            "type": "string",
+            "example": "Delivery"
+          },
+          "Circle": {
+            "type": "string",
+            "example": "Karnataka"
+          },
+          "District": {
+            "type": "string",
+            "example": "Bengaluru"
+          },
+          "Division": {
+            "type": "string",
+            "example": "Bengaluru GPO"
+          },
+          "Region": {
+            "type": "string",
+            "example": "Bengaluru HQ"
+          },
+          "Block": {
+            "type": "string",
+            "example": "Bengaluru East"
+          },
+          "State": {
+            "type": "string",
+            "example": "Karnataka"
+          },
+          "Country": {
+            "type": "string",
+            "example": "India"
+          },
+          "Pincode": {
+            "type": "string",
+            "example": "560001"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}
