@@ -1,6 +1,6 @@
 {
   "id": "c1c21f5a-10f3-4ef0-a378-7c4af28790a1",
-  "name": "runner test",
+  "name": "runner chain test",
   "description": "",
   "endpoints": [
     {
@@ -139,5 +139,5 @@
     }
   ],
   "createdAt": "2026-08-26T12:35:54.342Z",
-  "updatedAt": "2026-08-26T13:13:15.555Z"
+  "updatedAt": "2026-08-26T13:53:12.744Z"
 }

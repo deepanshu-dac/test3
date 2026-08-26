@@ -4,12 +4,17 @@
   "variables": [
     {
       "key": "postId",
-      "value": "101",
+      "value": "1",
       "enabled": true
     },
     {
       "key": "lastStatus",
       "value": "201",
+      "enabled": true
+    },
+    {
+      "key": "commentEmail",
+      "value": "Eliseo@gardner.biz",
       "enabled": true
     }
   ]

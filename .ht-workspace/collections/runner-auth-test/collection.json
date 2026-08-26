@@ -1,0 +1,84 @@
+{
+  "id": "809e4c05-337c-492a-850e-ddde22940a68",
+  "name": "runner auth test",
+  "description": "",
+  "endpoints": [
+    {
+      "name": "inherit",
+      "description": "",
+      "method": "GET",
+      "url": "https://httpbin.org/bearer",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "enabled": true
+        }
+      ],
+      "queryParams": [],
+      "pathParams": [],
+      "body": "",
+      "scripts": {
+        "post": {
+          "mode": "advanced",
+          "script": "ht.test(\"Inherit auth - 200\", () => {\n  ht.expect(ht.response.status).toBe(200);\n});\n"
+        }
+      },
+      "id": "940d6bda-88be-473b-9a6e-e5d251d7e4a6",
+      "createdAt": "2026-08-26T13:54:39.717Z",
+      "updatedAt": "2026-08-26T13:54:44.163Z"
+    },
+    {
+      "name": "own auth",
+      "description": "",
+      "method": "GET",
+      "url": "https://httpbin.org/bearer",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "enabled": true
+        }
+      ],
+      "queryParams": [],
+      "pathParams": [],
+      "body": "",
+      "scripts": {
+        "post": {
+          "mode": "advanced",
+          "script": "ht.test(\"Own auth - 200\", () => {\n  ht.expect(ht.response.status).toBe(200);\n});\n"
+        }
+      },
+      "id": "adc96cf1-7281-46b9-ab94-c310b00b2533",
+      "createdAt": "2026-08-26T13:55:20.812Z",
+      "updatedAt": "2026-08-26T13:55:20.812Z"
+    },
+    {
+      "name": "no auth",
+      "description": "",
+      "method": "GET",
+      "url": "https://httpbin.org/bearer",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "enabled": true
+        }
+      ],
+      "queryParams": [],
+      "pathParams": [],
+      "body": "",
+      "scripts": {
+        "post": {
+          "mode": "advanced",
+          "script": "ht.test(\"No auth - 401\", () => {\n  ht.expect(ht.response.status).toBe(401);\n});\n"
+        }
+      },
+      "id": "e937174e-0fc6-46be-96ae-3f4598e3491c",
+      "createdAt": "2026-08-26T13:55:49.975Z",
+      "updatedAt": "2026-08-26T13:55:49.975Z"
+    }
+  ],
+  "createdAt": "2026-08-26T13:52:58.463Z",
+  "updatedAt": "2026-08-26T13:55:49.975Z"
+}
