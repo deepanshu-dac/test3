@@ -3039,7 +3039,7 @@
     },
     "/meter/v3/address-line": {
       "post": {
-        "summary": "address search by postCode - gas",
+        "summary": "address search by postCode - sodvnosaodnvsanvosan",
         "responses": {
           "200": {
             "description": "Successful response",
@@ -4815,6 +4815,16 @@
                 "fuelType": "elec",
                 "customerName": "john",
                 "customerConsent": "Yes"
+              },
+              "examples": {
+                "Request Example": {
+                  "value": {
+                    "postCode": "M46 0BJ",
+                    "fuelType": "elec",
+                    "customerName": "john",
+                    "customerConsent": "Yes"
+                  }
+                }
               }
             }
           }
@@ -4835,5 +4845,9 @@
     {
       "name": "V2 - New Release"
     }
-  ]
+  ],
+  "info": {
+    "title": "a1",
+    "description": "Address search and advanced address search identifies the addresses with meters registered against them.\n\n### This Collection Contains:\n\n- **Address Search:** Fetches all registered addresses with meters\n- **Advanced Address Search:** Fetches and matches addresses from Electricity and Gas industry to show both fuel type addresses.\n    \n\nFor proper responses from the APIs, please use the inputs suggested in the documentation of each API set."
+  }
 }
