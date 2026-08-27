@@ -3,19 +3,19 @@
   "name": "Default",
   "variables": [
     {
-      "key": "postId",
-      "value": "100000",
-      "enabled": true
+      "key": "baseurl",
+      "value": "https://sandbox.api.thelabrador.co.uk\t",
+      "enabled": false
     },
     {
-      "key": "lastStatus",
-      "value": "201",
-      "enabled": true
+      "key": "apipath",
+      "value": "meter/v1\t",
+      "enabled": false
     },
     {
-      "key": "commentEmail",
-      "value": "Eliseo@gardner.biz",
-      "enabled": true
+      "key": "apikey",
+      "value": "d7e8dcf5-459e-4cc3-b6b6-9df2ce3d0e72\t",
+      "enabled": false
     }
   ]
 }

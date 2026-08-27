@@ -6,857 +6,6 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/meter/v1/addresses": {
-      "get": {
-        "summary": "r2",
-        "tags": [
-          "V1 - API _ DECOMMISIONED"
-        ],
-        "parameters": [
-          {
-            "name": "postCode",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "example": "M46 0BJ"
-            },
-            "description": "postCode is mandatory",
-            "example": "M46 0BJ"
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "d7e8dcf5-459e-4cc3-b6b6-9df2ce3d0e72"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successExample1-advanced address search by postcode",
-            "headers": {
-              "Content-Type": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "application/json; charset=utf-8"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "5080"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Wed, 08 May 2024 04:15:42 GMT"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "504e62a4-1550-4f1a-adba-35b50ed7dc46"
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Origin, X-Requested-With, X-Source-Ip, X-Identified-MCC,X-Identified-MNC, X-Using-Mobile-Data, Accept, Authorization, User-Agent,Host, Accept-Language, Location, Referrer, Set-Cookie"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "5080"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "XbxhPG_rDoEEd3g="
-              },
-              "Vary": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Origin"
-              },
-              "X-Powered-By": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Express"
-              },
-              "Access-Control-Allow-Methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "GET, POST, OPTIONS, DELETE"
-              },
-              "ETag": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "W/\"13d8-i1HNVVp4gNVlCBSIHHjDt3mIoec\""
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Wed, 08 May 2024 04:15:42 GMT"
-              },
-              "Access-Control-Allow-Credentials": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "true"
-              },
-              "X-Cache": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Miss from cloudfront"
-              },
-              "Via": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "1.1 e214472117f5776be3be68e3db0e3614.cloudfront.net (CloudFront)"
-              },
-              "X-Amz-Cf-Pop": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "BLR50-P2"
-              },
-              "X-Amz-Cf-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "p2sVrebx8HPLU5ZJrM2nm2ne0UWh7aoMFaREJrdaHfb48NKuCD3V4w=="
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "integer"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "addressId": {
-                            "type": "string"
-                          },
-                          "text": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "successExample1_advanced_address_search_by_postcode_a53cbad5": {
-                    "summary": "successExample1-advanced address search by postcode",
-                    "value": {
-                      "status": "Success",
-                      "code": 200,
-                      "data": [
-                        {
-                          "addressId": "1582lkb6d6mt",
-                          "text": "1 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6mu",
-                          "text": "3 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6mv",
-                          "text": "5 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6mw",
-                          "text": "Adjacent To, 5 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6mx",
-                          "text": "Chantry Barn, 5 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6my",
-                          "text": "7 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6mz",
-                          "text": "9 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6n0",
-                          "text": "11 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6n1",
-                          "text": "13 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6n2",
-                          "text": "Black Smith Cottage, 13 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6n3",
-                          "text": "15 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6n4",
-                          "text": "17 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6n5",
-                          "text": "Hall Cottage, 17 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6n6",
-                          "text": "22 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6n7",
-                          "text": "Manor Farm, 22 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6n8",
-                          "text": "23 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6n9",
-                          "text": "The Old School House, 23 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6na",
-                          "text": "24 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nb",
-                          "text": "24a High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nc",
-                          "text": "24b High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nd",
-                          "text": "25 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6ne",
-                          "text": "Clare Cottage, 25 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nf",
-                          "text": "25a High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6ng",
-                          "text": "26 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nh",
-                          "text": "26a High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6ni",
-                          "text": "Old Fox House, 26a High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nj",
-                          "text": "27 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nk",
-                          "text": "28 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nl",
-                          "text": "Phoenix The Genuine Article, 28 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nm",
-                          "text": "29 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nn",
-                          "text": "30 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6no",
-                          "text": "Stores, 30 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6np",
-                          "text": "31 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nq",
-                          "text": "Welland House, 31 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nr",
-                          "text": "32 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6ns",
-                          "text": "The Talbot, 33 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nt",
-                          "text": "34 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nu",
-                          "text": "35 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nv",
-                          "text": "36 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nw",
-                          "text": "37 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nx",
-                          "text": "38 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6ny",
-                          "text": "39 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6nz",
-                          "text": "40 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6o0",
-                          "text": "41a High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6o1",
-                          "text": "41b High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6o2",
-                          "text": "42 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6o3",
-                          "text": "43 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6o4",
-                          "text": "45 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6o5",
-                          "text": "46 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6o6",
-                          "text": "47 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6o7",
-                          "text": "48 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6o8",
-                          "text": "Post Office, 48 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6o9",
-                          "text": "49 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6oa",
-                          "text": "51 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6ob",
-                          "text": "53 High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6oc",
-                          "text": "(No Building Name), High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6od",
-                          "text": "Gretton House, High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6oe",
-                          "text": "St. James House, High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6of",
-                          "text": "25b, The Barn, High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6og",
-                          "text": "The Coach House, High Street,Gretton, Corby, NN17 3DE"
-                        },
-                        {
-                          "addressId": "1582lkb6d6oh",
-                          "text": "The Old Fox, High Street,Gretton, Corby, NN17 3DE"
-                        }
-                      ]
-                    },
-                    "x-hypertest": {
-                      "request": {
-                        "requestType": "GET",
-                        "headers": {
-                          "x-api-key": "d7e8dcf5-459e-4cc3-b6b6-9df2ce3d0e72"
-                        },
-                        "query": {
-                          "postCode": "M46 0BJ"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/meter/v1/asset": {
-      "get": {
-        "summary": "r3",
-        "tags": [
-          "V1 - API _ DECOMMISIONED"
-        ],
-        "parameters": [
-          {
-            "name": "addressId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "example": "1qml2bju8y0"
-            },
-            "description": "addressId is mandatory. A unique identifier for the address found from the postcode search.",
-            "example": "1qml2bju8y0"
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "d7e8dcf5-459e-4cc3-b6b6-9df2ce3d0e72"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "success-example",
-            "headers": {
-              "Content-Type": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "application/json; charset=utf-8"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "158"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Wed, 08 May 2024 04:15:15 GMT"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "46d4fdfb-4d3e-4f7f-bb20-272a00ac0f3c"
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Origin, X-Requested-With, X-Source-Ip, X-Identified-MCC,X-Identified-MNC, X-Using-Mobile-Data, Accept, Authorization, User-Agent,Host, Accept-Language, Location, Referrer, Set-Cookie"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "158"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "XbxdFF1gDoEEqsg="
-              },
-              "Vary": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Origin"
-              },
-              "X-Powered-By": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Express"
-              },
-              "Access-Control-Allow-Methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "GET, POST, OPTIONS, DELETE"
-              },
-              "ETag": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "W/\"9e-RPN9XwVvqHa9LQHrLnWnb+vPrz4\""
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Wed, 08 May 2024 04:15:15 GMT"
-              },
-              "Access-Control-Allow-Credentials": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "true"
-              },
-              "X-Cache": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Miss from cloudfront"
-              },
-              "Via": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "1.1 e214472117f5776be3be68e3db0e3614.cloudfront.net (CloudFront)"
-              },
-              "X-Amz-Cf-Pop": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "BLR50-P2"
-              },
-              "X-Amz-Cf-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "i8EMp6WWu0NXR4MWdjbrG0yrGTxVC0baCeiEXtYJB18YTbymm7dbSQ=="
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "integer"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "addressId": {
-                          "type": "string"
-                        },
-                        "mprn": {
-                          "type": "string"
-                        },
-                        "mpan": {
-                          "type": "string"
-                        },
-                        "fuelType": {
-                          "type": "string"
-                        },
-                        "postCode": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "success_example_8f4b116c": {
-                    "summary": "success-example",
-                    "value": {
-                      "status": "Success",
-                      "code": 200,
-                      "data": {
-                        "addressId": "1qml2bju8y0",
-                        "mprn": "9197426700",
-                        "mpan": "1200060631572",
-                        "fuelType": "electricitygas",
-                        "postCode": "SE232UN"
-                      }
-                    },
-                    "x-hypertest": {
-                      "request": {
-                        "requestType": "GET",
-                        "headers": {
-                          "x-api-key": "d7e8dcf5-459e-4cc3-b6b6-9df2ce3d0e72"
-                        },
-                        "query": {
-                          "addressId": "1qml2bju8y0"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "error-response",
-            "headers": {
-              "Content-Type": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "application/json; charset=utf-8"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "115"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Wed, 08 May 2024 12:52:31 GMT"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "0d4c2655-069d-4da1-9118-41b8a27231c3"
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Origin, X-Requested-With, X-Source-Ip, X-Identified-MCC,X-Identified-MNC, X-Using-Mobile-Data, Accept, Authorization, User-Agent,Host, Accept-Language, Location, Referrer, Set-Cookie"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "115"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Xc9OaEoIDoEEjng="
-              },
-              "Vary": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Origin"
-              },
-              "X-Powered-By": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Express"
-              },
-              "Access-Control-Allow-Methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "GET, POST, OPTIONS, DELETE"
-              },
-              "ETag": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "W/\"73-qyLfPV3ID8Px1mbCYOVYOYgvDHM\""
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Wed, 08 May 2024 12:52:31 GMT"
-              },
-              "Access-Control-Allow-Credentials": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "true"
-              },
-              "X-Cache": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Error from cloudfront"
-              },
-              "Via": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "1.1 7e789934ab3bcbc8565056b7ff464c92.cloudfront.net (CloudFront)"
-              },
-              "X-Amz-Cf-Pop": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "BLR50-P2"
-              },
-              "X-Amz-Cf-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "x8aAR33DJjegDP25WM42bEXPAwiZjqGgWsm-marGXq_kCuusGBy4Og=="
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "integer"
-                    },
-                    "error": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string"
-                          },
-                          "subCode": {
-                            "type": "integer"
-                          },
-                          "message": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "error_response_8f4b116c": {
-                    "summary": "error-response",
-                    "value": {
-                      "status": "Failure",
-                      "code": 400,
-                      "error": [
-                        {
-                          "type": "MissingInput",
-                          "subCode": 4002,
-                          "message": "addressId is mandatory"
-                        }
-                      ]
-                    },
-                    "x-hypertest": {
-                      "request": {
-                        "requestType": "GET",
-                        "headers": {
-                          "x-api-key": "d7e8dcf5-459e-4cc3-b6b6-9df2ce3d0e72"
-                        },
-                        "query": {
-                          "addressId": "1qml2bju8y0"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/meter/v2/addresses": {
       "get": {
         "summary": "advanced address search by postcode",
@@ -4829,6 +3978,419 @@
             }
           }
         }
+      }
+    },
+    "/meter/v1/addresses": {
+      "get": {
+        "summary": "r2",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "application/json; charset=utf-8"
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "5080"
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "keep-alive"
+              },
+              "Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Wed, 08 May 2024 04:15:42 GMT"
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "504e62a4-1550-4f1a-adba-35b50ed7dc46"
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "*"
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Origin, X-Requested-With, X-Source-Ip, X-Identified-MCC,X-Identified-MNC, X-Using-Mobile-Data, Accept, Authorization, User-Agent,Host, Accept-Language, Location, Referrer, Set-Cookie"
+              },
+              "x-amzn-Remapped-Content-Length": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "5080"
+              },
+              "x-amzn-Remapped-Connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "keep-alive"
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "XbxhPG_rDoEEd3g="
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Origin"
+              },
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Express"
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "GET, POST, OPTIONS, DELETE"
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "W/\"13d8-i1HNVVp4gNVlCBSIHHjDt3mIoec\""
+              },
+              "x-amzn-Remapped-Date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Wed, 08 May 2024 04:15:42 GMT"
+              },
+              "Access-Control-Allow-Credentials": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "true"
+              },
+              "X-Cache": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Miss from cloudfront"
+              },
+              "Via": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "1.1 e214472117f5776be3be68e3db0e3614.cloudfront.net (CloudFront)"
+              },
+              "X-Amz-Cf-Pop": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "BLR50-P2"
+              },
+              "X-Amz-Cf-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "p2sVrebx8HPLU5ZJrM2nm2ne0UWh7aoMFaREJrdaHfb48NKuCD3V4w=="
+              }
+            },
+            "content": {
+              "application/json": {
+                "examples": {
+                  "successExample1_advanced_address_search_by_postcode_a53cbad5": {
+                    "value": {
+                      "status": "Success",
+                      "code": 200,
+                      "data": [
+                        {
+                          "addressId": "1582lkb6d6mt",
+                          "text": "1 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6mu",
+                          "text": "3 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6mv",
+                          "text": "5 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6mw",
+                          "text": "Adjacent To, 5 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6mx",
+                          "text": "Chantry Barn, 5 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6my",
+                          "text": "7 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6mz",
+                          "text": "9 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6n0",
+                          "text": "11 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6n1",
+                          "text": "13 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6n2",
+                          "text": "Black Smith Cottage, 13 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6n3",
+                          "text": "15 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6n4",
+                          "text": "17 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6n5",
+                          "text": "Hall Cottage, 17 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6n6",
+                          "text": "22 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6n7",
+                          "text": "Manor Farm, 22 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6n8",
+                          "text": "23 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6n9",
+                          "text": "The Old School House, 23 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6na",
+                          "text": "24 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nb",
+                          "text": "24a High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nc",
+                          "text": "24b High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nd",
+                          "text": "25 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6ne",
+                          "text": "Clare Cottage, 25 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nf",
+                          "text": "25a High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6ng",
+                          "text": "26 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nh",
+                          "text": "26a High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6ni",
+                          "text": "Old Fox House, 26a High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nj",
+                          "text": "27 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nk",
+                          "text": "28 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nl",
+                          "text": "Phoenix The Genuine Article, 28 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nm",
+                          "text": "29 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nn",
+                          "text": "30 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6no",
+                          "text": "Stores, 30 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6np",
+                          "text": "31 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nq",
+                          "text": "Welland House, 31 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nr",
+                          "text": "32 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6ns",
+                          "text": "The Talbot, 33 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nt",
+                          "text": "34 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nu",
+                          "text": "35 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nv",
+                          "text": "36 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nw",
+                          "text": "37 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nx",
+                          "text": "38 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6ny",
+                          "text": "39 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6nz",
+                          "text": "40 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6o0",
+                          "text": "41a High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6o1",
+                          "text": "41b High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6o2",
+                          "text": "42 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6o3",
+                          "text": "43 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6o4",
+                          "text": "45 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6o5",
+                          "text": "46 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6o6",
+                          "text": "47 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6o7",
+                          "text": "48 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6o8",
+                          "text": "Post Office, 48 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6o9",
+                          "text": "49 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6oa",
+                          "text": "51 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6ob",
+                          "text": "53 High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6oc",
+                          "text": "(No Building Name), High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6od",
+                          "text": "Gretton House, High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6oe",
+                          "text": "St. James House, High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6of",
+                          "text": "25b, The Barn, High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6og",
+                          "text": "The Coach House, High Street,Gretton, Corby, NN17 3DE"
+                        },
+                        {
+                          "addressId": "1582lkb6d6oh",
+                          "text": "The Old Fox, High Street,Gretton, Corby, NN17 3DE"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "postCode",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "M46 0BJ"
+            },
+            "description": "postCode is mandatory",
+            "example": "M46 0BJ"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "d7e8dcf5-459e-4cc3-b6b6-9df2ce3d0e72"
+          }
+        ],
+        "tags": [
+          "V1 - API _ DECOMMISIONED"
+        ]
       }
     }
   },

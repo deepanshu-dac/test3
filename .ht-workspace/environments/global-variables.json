@@ -1,15 +1,20 @@
 {
-  "id": "7073eebd-dbf7-4901-98f6-a0ab8834c7cc",
+  "id": "0b2d2a15-f9ba-4f0b-848d-a8c50c3076b7",
   "variables": [
     {
-      "key": "apiVersion",
-      "value": "v2",
-      "enabled": true
+      "key": "baseurl",
+      "value": "https://httpbin.org",
+      "enabled": false
     },
     {
-      "key": "host",
-      "value": "global.example.com",
-      "enabled": true
+      "key": "apipath",
+      "value": "test/v2",
+      "enabled": false
+    },
+    {
+      "key": "apikey",
+      "value": "global-key-000",
+      "enabled": false
     }
   ]
 }

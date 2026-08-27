@@ -1,0 +1,9 @@
+{
+  "id": "0e3763f5-6c79-4e59-89f8-e9fb9016c8dc",
+  "name": "mcp test openapi",
+  "createdAt": "2026-08-27T11:48:52.632Z",
+  "updatedAt": "2026-08-27T11:50:25.671Z",
+  "sourceType": "OpenAPI",
+  "sourceVersion": "3.1.0",
+  "endpointCount": 1
+}

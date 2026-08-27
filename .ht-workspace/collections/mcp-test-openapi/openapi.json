@@ -1,0 +1,90 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "mcp test openapi",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.thelabrador.co.uk"
+    }
+  ],
+  "paths": {
+    "/{{apipath}}/asset": {
+      "get": {
+        "summary": "r3",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success_example_8f4b116c": {
+                    "value": {
+                      "status": "Success",
+                      "code": 200,
+                      "data": {
+                        "addressId": "1qml2bju8y0",
+                        "mprn": "9197426700",
+                        "mpan": "1200060631572",
+                        "fuelType": "electricitygas",
+                        "postCode": "SE232UN"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "error_response_8f4b116c": {
+                    "value": {
+                      "status": "Failure",
+                      "code": 400,
+                      "error": [
+                        {
+                          "type": "MissingInput",
+                          "subCode": 4002,
+                          "message": "addressId is mandatory"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "addressId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "example": "1qml2bju8y0"
+            },
+            "description": "addressId is mandatory. A unique identifier for the address found from the postcode search.",
+            "example": "1qml2bju8y0"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{apikey}}"
+          }
+        ],
+        "servers": [
+          {
+            "url": "{{baseurl}}"
+          }
+        ]
+      }
+    }
+  }
+}

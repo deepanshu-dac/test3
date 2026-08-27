@@ -3,8 +3,8 @@
   "name": "a1",
   "description": "Address search and advanced address search identifies the addresses with meters registered against them.\n\n### This Collection Contains:\n\n- **Address Search:** Fetches all registered addresses with meters\n- **Advanced Address Search:** Fetches and matches addresses from Electricity and Gas industry to show both fuel type addresses.\n    \n\nFor proper responses from the APIs, please use the inputs suggested in the documentation of each API set.",
   "createdAt": "2026-06-19T11:07:28.155Z",
-  "updatedAt": "2026-08-26T14:12:35.117Z",
+  "updatedAt": "2026-08-27T11:33:28.245Z",
   "sourceType": "OpenAPI",
   "sourceVersion": "3.0.3",
-  "endpointCount": 6
+  "endpointCount": 5
 }
