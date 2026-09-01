@@ -16,6 +16,36 @@
       "key": "apikey",
       "value": "d7e8dcf5-459e-4cc3-b6b6-9df2ce3d0e72\t",
       "enabled": false
+    },
+    {
+      "key": "charurl",
+      "value": "https://rickandmortyapi.com/api",
+      "enabled": true
+    },
+    {
+      "key": "charPath",
+      "value": "character",
+      "enabled": true
+    },
+    {
+      "key": "requestTime",
+      "value": "2026-08-28T10:06:20.145Z",
+      "enabled": true
+    },
+    {
+      "key": "responseBody",
+      "value": "{\"userId\":1,\"id\":1,\"title\":\"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\",\"body\":\"quia et suscipit\\nsuscipit recusandae consequuntur expedita et cum\\nreprehenderit molestiae ut ut quas totam\\nnostrum rerum est autem sunt rem eveniet architecto\"}",
+      "enabled": true
+    },
+    {
+      "key": "userId",
+      "value": "1",
+      "enabled": true
+    },
+    {
+      "key": "postCount",
+      "value": "100",
+      "enabled": true
     }
   ]
 }
