@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "3b04875b-4c3e-4f3c-8c8f-c1f27fe572cc",
+		"name": "PM Script Migration Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "52317057",
+		"_collection_link": "https://deepanshu-13bc4b72-6817381.postman.co/workspace/Deepanshu-D's-Workspace~21651815-5657-4127-8b97-efb715517e18/collection/52317057-3b04875b-4c3e-4f3c-8c8f-c1f27fe572cc?action=share&source=collection_link&creator=52317057"
+	},
+	"item": [
+		{
+			"name": "1. Basic env and response",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"requestTime\", new Date().toISOString());",
+							"pm.request.headers.add({key: \"X-Test-Header\", value: \"hello\"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", function() {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is acceptable\", function() {",
+							"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"responseBody\", JSON.stringify(jsonData));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Chai assertions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"",
+							"pm.test(\"Has correct fields\", function() {",
+							"    pm.expect(data).to.have.property(\"userId\");",
+							"    pm.expect(data.userId).to.be.above(0);",
+							"    pm.expect(data.title).to.be.a(\"string\");",
+							"    pm.expect(data.title).to.include(\" \");",
+							"});",
+							"",
+							"pm.test(\"Body is not empty\", function() {",
+							"    pm.expect(pm.response.text()).to.be.ok;",
+							"});",
+							"",
+							"pm.test(\"ID matches\", function() {",
+							"    pm.expect(data.id).to.deep.equal(1);",
+							"});",
+							"",
+							"pm.response.to.have.status(200);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Unsupported features",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"key\", \"value\");",
+							"pm.globals.set(\"key\", \"value\");",
+							"pm.execution.setNextRequest(\"Next\");",
+							"",
+							"pm.test(\"This should still work\", function() {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Variable chaining",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"pm.environment.set(\"userId\", data[0].userId);",
+							"pm.environment.set(\"postCount\", data.length);",
+							"",
+							"pm.test(\"Got multiple posts\", function() {",
+							"    pm.expect(data.length).to.be.above(1);",
+							"});",
+							"",
+							"pm.test(\"First post has title\", function() {",
+							"    pm.expect(data[0].title).to.be.ok;",
+							"    pm.expect(data[0].title).to.contain(\" \");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
