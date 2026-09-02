@@ -1,0 +1,3465 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Tokenised Deposit Service",
+    "description": "### Introduction \nTransform treasury and liquidity management by integrating real-time tokenised deposit balances and internal value transfers across HSBC’s permissioned distributed ledger. TDS APIs enable corporate customers to automate workflows, increase visibility, and optimize funding, leveraging HSBC’s innovation in digital assets.\n#### Key Features\n* The Token Operations API enables HSBC corporate customers to create, transfer, and redeem tokenised deposits securely and in real time, directly within the bank’s distributed ledger environment.\n\n* The Wallet Balance Enquiry API provides real-time visibility of tokenised deposit holdings across HSBC Blockchain Wallets, supporting efficient liquidity management and operational oversight.\n\n* The Wallet Transactions Enquiry API provides automated, real-time access to detailed records of tokenised value movements within HSBC Blockchain Wallets, enhancing transparency, reconciliation, and operational control.\n\n### Version History\nChange log and release history:\n|  Version  |  Dates  |  Notes  |\n|-------|------------|------|\n|  1.0  |  2026-04  |  Initial release of the TDS API. |\n\n\n### Authentication and Authorization\nAPI Authentication is performed using either ProfileID/Secret or a signed JSON Web Token (JWT). The token must be provided in the header of the HTTP request every time you\ninvoke HSBC's API services. This ensures only authorised and pre-approved organisations can access and utilise our API services. \nClient Can be either Basic or Bearer token. Basic token like \"Basic Base64(&lt;profile-id&gt;:&lt;client-secret&gt;); While Bearer token like \"JWS &lt;JWT token&gt;\"\nPlease refer to the Security section.\n### Response and Error Codes\nThe API uses common HTTP status codes in the response header to indicate success or failure. Specific error code and description will be returned in the custom error schema.\n",
+    "version": "1"
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.corporate-api.hsbc.com/mock/treasury/tokenised-deposit-service",
+      "description": "Sandbox mock URL"
+    }
+  ],
+  "paths": {
+    "/v1/.well-known/health": {
+      "summary": "health check",
+      "get": {
+        "summary": "Health Check API",
+        "description": "This endpoint is targeted for manual use with cURL or similar command line tools, and can be used to quickly obtain information on the overall health of the system and the individual checks.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authorization"
+          }
+        ],
+        "tags": [
+          "Health Check API"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/200-Health"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-Health"
+          },
+          "500": {
+            "$ref": "#/components/responses/500-Health"
+          }
+        }
+      }
+    },
+    "/v1/token/operations": {
+      "summary": "Token Operations API",
+      "post": {
+        "summary": "Create or redeem a token, or perform a token transfer.",
+        "tags": [
+          "Token Operations API"
+        ],
+        "description": "The Token Operations API enables HSBC corporate customers to create, transfer, and redeem tokenised deposits securely and in real time, directly within the bank’s distributed ledger environment.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/content-type"
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-hsbc-request-correlation-id"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/tokenOperationRequestBody"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/token_operation_200"
+          },
+          "400": {
+            "$ref": "#/components/responses/token_operation_400"
+          },
+          "401": {
+            "$ref": "#/components/responses/tds_401"
+          },
+          "403": {
+            "$ref": "#/components/responses/tds_403"
+          },
+          "404": {
+            "$ref": "#/components/responses/common_404"
+          },
+          "405": {
+            "$ref": "#/components/responses/common_405"
+          },
+          "406": {
+            "$ref": "#/components/responses/common_406"
+          },
+          "415": {
+            "$ref": "#/components/responses/common_415"
+          },
+          "429": {
+            "$ref": "#/components/responses/common_429"
+          },
+          "500": {
+            "$ref": "#/components/responses/token_operation_500"
+          },
+          "503": {
+            "$ref": "#/components/responses/common_503"
+          }
+        }
+      }
+    },
+    "/v1/wallet/balances": {
+      "summary": "Wallet Balance Enquiry API",
+      "post": {
+        "summary": "Retrieves wallet balance details to provide clients with visibility into available funds.",
+        "tags": [
+          "Wallet Balance Enquiry API"
+        ],
+        "description": "The Wallet Balance Enquiry API provides real-time visibility of tokenised deposit holdings across HSBC Blockchain Wallets, supporting efficient liquidity management and operational oversight.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/content-type"
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-hsbc-request-correlation-id"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/balanceEnquiryRequestBody"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/balance_200"
+          },
+          "400": {
+            "$ref": "#/components/responses/balance_transaction_enquiry_400"
+          },
+          "401": {
+            "$ref": "#/components/responses/tds_401"
+          },
+          "403": {
+            "$ref": "#/components/responses/tds_403"
+          },
+          "404": {
+            "$ref": "#/components/responses/common_404"
+          },
+          "405": {
+            "$ref": "#/components/responses/common_405"
+          },
+          "406": {
+            "$ref": "#/components/responses/common_406"
+          },
+          "415": {
+            "$ref": "#/components/responses/common_415"
+          },
+          "429": {
+            "$ref": "#/components/responses/common_429"
+          },
+          "500": {
+            "$ref": "#/components/responses/balance_transaction_enquiry_500"
+          },
+          "503": {
+            "$ref": "#/components/responses/common_503"
+          }
+        }
+      }
+    },
+    "/v1/wallet/transactions": {
+      "summary": "Wallet Transaction(s) Enquiry API",
+      "post": {
+        "summary": "Retrieves wallet transaction details to help clients track processing outcomes.",
+        "tags": [
+          "Wallet Transaction(s) Enquiry API"
+        ],
+        "description": "The Wallet Transactions Enquiry API provides automated, real-time access to detailed records of tokenised value movements within HSBC Blockchain Wallets, enhancing transparency, reconciliation, and operational control.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/content-type"
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-hsbc-request-correlation-id"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/transactionEnquiryRequestBody"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/transaction_200"
+          },
+          "400": {
+            "$ref": "#/components/responses/balance_transaction_enquiry_400"
+          },
+          "401": {
+            "$ref": "#/components/responses/tds_401"
+          },
+          "403": {
+            "$ref": "#/components/responses/tds_403"
+          },
+          "404": {
+            "$ref": "#/components/responses/common_404"
+          },
+          "405": {
+            "$ref": "#/components/responses/common_405"
+          },
+          "406": {
+            "$ref": "#/components/responses/common_406"
+          },
+          "415": {
+            "$ref": "#/components/responses/common_415"
+          },
+          "429": {
+            "$ref": "#/components/responses/common_429"
+          },
+          "500": {
+            "$ref": "#/components/responses/balance_transaction_enquiry_500"
+          },
+          "503": {
+            "$ref": "#/components/responses/common_503"
+          }
+        }
+      }
+    },
+    "/v1/callbackUrl": {
+      "summary": "Token transaction status update(Client Webhook)",
+      "description": "HSBC will send push notifications to the client’s registered endpoint when relevant events occur. This is a webhook style callback, where HSBC acts as the caller and the client provides the service endpoint.\n",
+      "post": {
+        "summary": "Token transaction status update",
+        "tags": [
+          "Token transaction status update(Client Webhook)"
+        ],
+        "description": "HSBC sends a POST request to the client’s endpoint when a Token Operation event occurs.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/client-id"
+          },
+          {
+            "$ref": "#/components/parameters/client-secret"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/pushRequesBody"
+        },
+        "responses": {
+          "200": {
+            "description": "Notification received successfully."
+          },
+          "400": {
+            "description": "Invalid notification payload."
+          },
+          "500": {
+            "description": "Webhook Server is unavailable."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "content-type": {
+        "description": "The content type of the request payload. Typically set to application/json.",
+        "example": "application/json",
+        "in": "header",
+        "name": "Content-Type",
+        "required": true,
+        "schema": {
+          "maxLength": 512,
+          "minLength": 0,
+          "pattern": "^[^\\x00-\\x08\\x0A-\\x1F\\x7F():<>?@\\[\\\\\\]{}]*$",
+          "type": "string"
+        }
+      },
+      "authorization": {
+        "description": "Mandatory. Can be either Basic or Bearer token. Basic token like \"Basic Base64(&lt;profile-id&gt;:&lt;client-secret&gt;)\"; while Bearer token like \"JWT &lt;JWT token&gt;\".",
+        "in": "header",
+        "name": "Authorization",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "examples": {
+          "JWT": {
+            "summary": "JWT",
+            "value": "JWS ewogICAgImp0aSI6ICI1Y2NmZDNhMC0zNmExLTExZWEtYjc4MC1lZWVlMGFmMjcyM2MiLAogICAgImlhdCI6IDE1Nzg5ODc3MjYsCiAgICAic3ViIjogIlBDMDAwMDEyMzQ1IiwKICAgICJhdWQiOiAiYmFhcyIsCiAgICAicGF5bG9hZF9oYXNoIjoKICAgICJwYXlsb2FkX2hhc2hfYWxnIjogIlJTQVNIQTI1NiIKfQ=="
+          },
+          "Basic": {
+            "summary": "Basic",
+            "value": "Basic PFBDMDAwMDEyMzQ1OjFxYXoyd3N4Pg=="
+          }
+        }
+      },
+      "x-hsbc-request-correlation-id": {
+        "description": "Optional.The UUID is generated by the client and is used to track the request at the xAPI layer.",
+        "in": "header",
+        "name": "X-HSBC-Request-Correlation-Id",
+        "required": false,
+        "schema": {
+          "example": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+          "format": "uuid",
+          "maxLength": 512,
+          "minLength": 0,
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "type": "string"
+        }
+      },
+      "client-id": {
+        "description": "Client ID assigned by the client to HSBC, used by HSBC for authentication when invoking the client’s endpoint.",
+        "in": "header",
+        "name": "Client-Id",
+        "required": true,
+        "schema": {
+          "example": "PIC12345678",
+          "type": "string",
+          "maxLength": 11,
+          "minLength": 0
+        }
+      },
+      "client-secret": {
+        "description": "Client secret assigned by the client to HSBC, used by HSBC for authentication when invoking the client’s endpoint.",
+        "in": "header",
+        "name": "Client-Secret",
+        "required": true,
+        "schema": {
+          "example": "U2FsdGVkX1+3GqyOoS+y9G9DHpwNfvRpQlZgz12M4BeuXs7SAoDqwSdt8JMYHDXn",
+          "format": "uuid",
+          "maxLength": 512,
+          "minLength": 0,
+          "pattern": "^[A-Za-z0-9-+\\/_]*$",
+          "type": "string"
+        }
+      }
+    },
+    "requestBodies": {
+      "tokenOperationRequestBody": {
+        "description": "Token Operation Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TokenOperationRequest"
+            },
+            "examples": {
+              "Create Token Encrypted Request Example": {
+                "$ref": "#/components/examples/mintTokenEncryptedRequestExample"
+              },
+              "Transfer Token Encrypted Request Example": {
+                "$ref": "#/components/examples/transferTokenEncryptedRequestExample"
+              },
+              "Redeem Token Encrypted Request Example": {
+                "$ref": "#/components/examples/redeemTokenEncryptedRequestExample"
+              },
+              "Create Token Decrypted Request Example": {
+                "$ref": "#/components/examples/mintTokenDecryptedRequestExample"
+              },
+              "Transfer Token Decrypted Request Example": {
+                "$ref": "#/components/examples/transferTokenDecryptedRequestExample"
+              },
+              "Redeem Token Decrypted Request Example": {
+                "$ref": "#/components/examples/redeemTokenDecryptedRequestExample"
+              }
+            }
+          }
+        }
+      },
+      "balanceEnquiryRequestBody": {
+        "description": "Balance Enquiry Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/WalletBalanceEnquiryRequest"
+            },
+            "examples": {
+              "Wallet Balance Enquiry Encrypted Request Example": {
+                "$ref": "#/components/examples/walletBalanceEnquiryEncryptedRequestExample"
+              },
+              "wallet Balance Enquiry Decrypted Request Example": {
+                "$ref": "#/components/examples/walletBalanceEnquiryDecryptedRequestExample"
+              }
+            }
+          }
+        }
+      },
+      "transactionEnquiryRequestBody": {
+        "description": "Transaction Enquiry Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/TransactionEnquiryRequest"
+            },
+            "examples": {
+              "Transaction Enquiry Encrypted Request Example": {
+                "$ref": "#/components/examples/transactionEnquiryEncryptedRequestExample"
+              },
+              "Transaction Enquiry Decrypted Request Example": {
+                "$ref": "#/components/examples/transactionEnquiryDecryptedRequestExample"
+              }
+            }
+          }
+        }
+      },
+      "pushRequesBody": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "push Notification Encrypted Request Example": {
+                "$ref": "#/components/examples/pushNotificationEncryptedRequestExample"
+              },
+              "Push Notification Encrypted Request Example ACSC": {
+                "$ref": "#/components/examples/pushNotificationDecryptedRequestExampleACSC"
+              },
+              "Push Notification Encrypted Request Example ACSP": {
+                "$ref": "#/components/examples/pushNotificationDecryptedRequestExampleACSP"
+              },
+              "Push Notification Encrypted Request Example RJCT": {
+                "$ref": "#/components/examples/pushNotificationDecryptedRequestExampleRJCT"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/PushNotificationRequest"
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200-Health": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "200 OK": {
+                "$ref": "#/components/examples/200-Health"
+              }
+            }
+          }
+        },
+        "description": "Health Response"
+      },
+      "401-Health": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "200 OK": {
+                "$ref": "#/components/examples/invalid_authorization"
+              }
+            }
+          }
+        },
+        "description": "Health Response"
+      },
+      "500-Health": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "500 ERROR": {
+                "$ref": "#/components/examples/resubmit_60_second"
+              }
+            }
+          }
+        },
+        "description": "Internal Server Error"
+      },
+      "common_404": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "Resource Not Found": {
+                "$ref": "#/components/examples/resource_not_found"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse4field"
+            }
+          }
+        },
+        "description": "Not Found"
+      },
+      "common_405": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "Method Not Allowed": {
+                "$ref": "#/components/examples/invalid_method"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse4field"
+            }
+          }
+        },
+        "description": "Method Not Allowed - Please check HTTP Method used in the API request"
+      },
+      "common_406": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "Not Acceptable": {
+                "$ref": "#/components/examples/invalid_media_type"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse4field"
+            }
+          }
+        },
+        "description": "Not Acceptable - Request not acceptable exception. Please contact HSBC INT or CSM for resolution"
+      },
+      "common_415": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "Missing content type": {
+                "$ref": "#/components/examples/missing_content_type"
+              },
+              "Invalid content type": {
+                "$ref": "#/components/examples/invalid_content_type"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse4field"
+            }
+          }
+        },
+        "description": "Unsupported Media type - Please check media type used in the API request"
+      },
+      "common_429": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "Too Many API Requests": {
+                "$ref": "#/components/examples/api_call_exceeded"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse4field"
+            }
+          }
+        },
+        "description": "Too Many API Requests"
+      },
+      "common_503": {
+        "content": {
+          "text/plain": {
+            "examples": {
+              "System Maintenance": {
+                "$ref": "#/components/examples/system_maintenance"
+              }
+            }
+          }
+        },
+        "description": "Service Unavailable. The service is temporarily unavailable. Please retry later."
+      },
+      "balance_200": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "walletBalanceEnquiryEncryptedRequestExample": {
+                "$ref": "#/components/examples/walletBalanceEnquiryEncryptedResponseExample"
+              },
+              "walletBalanceEnquiryDecryptedResponseExample": {
+                "$ref": "#/components/examples/walletBalanceEnquiryDecryptedResponseExample"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/WalletBalanceEnquiryResponse"
+            }
+          }
+        },
+        "description": "Request successfully."
+      },
+      "transaction_200": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "transactionEnquiryEncryptedResponseExample": {
+                "$ref": "#/components/examples/transactionEnquiryEncryptedResponseExample"
+              },
+              "transactionEnquiryDecryptedResponseExample": {
+                "$ref": "#/components/examples/transactionEnquiryDecryptedResponseExample"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/TransactionEnquiryResponse"
+            }
+          }
+        },
+        "description": "Request successfully."
+      },
+      "balance_transaction_enquiry_400": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "Invalid request body": {
+                "$ref": "#/components/examples/invalid_req_body"
+              },
+              "Missing data element": {
+                "$ref": "#/components/examples/missing_data_element"
+              },
+              "Invalid encryption field": {
+                "$ref": "#/components/examples/invalid_encryption_field"
+              },
+              "During the encryption or signing, the bank public key currently in use was found to have expired": {
+                "$ref": "#/components/examples/inbound_bank_key_expired"
+              },
+              "During the encryption or signing,the client public key currently in use was found to have expired": {
+                "$ref": "#/components/examples/inbound_client_key_expired"
+              },
+              "Payload not encrypted": {
+                "$ref": "#/components/examples/payload_not_encrypted"
+              },
+              "Request encrypted payload is invalid, data has been changed": {
+                "$ref": "#/components/examples/payload_tampered_with"
+              },
+              "Invalid client private key": {
+                "$ref": "#/components/examples/invalid_client_private_key"
+              },
+              "Invalid bank public key": {
+                "$ref": "#/components/examples/invalid_bank_public_key"
+              },
+              "Missing Mandatory Filed": {
+                "$ref": "#/components/examples/missing_mandatory_field"
+              },
+              "Invalid Mandatory Filed": {
+                "$ref": "#/components/examples/invalid_mandatory_field"
+              },
+              "Invalid decryption payload": {
+                "$ref": "#/components/examples/invalid_decryption_payload"
+              },
+              "Duplicate request": {
+                "$ref": "#/components/examples/duplicate_request"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse4field"
+            }
+          }
+        },
+        "description": "Bad Request."
+      },
+      "balance_transaction_enquiry_500": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "Technical Error in Encryption or Decryption Process": {
+                "$ref": "#/components/examples/crypto_tech_error"
+              },
+              "Encryption or Signing Failure In Accounting Transaction Request": {
+                "$ref": "#/components/examples/trans_encryption_or_signning_failure"
+              },
+              "Encryption or Signing Failure In Enquiry Request": {
+                "$ref": "#/components/examples/enquiry_encryption_or_signning_failure"
+              },
+              "During the encryption or signing, the bank public key currently in use was found to have expired": {
+                "$ref": "#/components/examples/outbound_bank_key_expired"
+              },
+              "During the encryption or signing,the client public key currently in use was found to have expired": {
+                "$ref": "#/components/examples/outbound_client_key_expired"
+              },
+              "System Error occur In Accounting Transaction Request": {
+                "$ref": "#/components/examples/resubmit_60_second"
+              },
+              "System Error occur In Enquiry Request": {
+                "$ref": "#/components/examples/perform_enquiry"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse6field"
+            }
+          }
+        },
+        "description": "Internal Server Error - Issue encountered within HSBC systems (internal server or solution component is not available). Clients should handle this as service unavailable."
+      },
+      "token_operation_200": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "ACSP - Encrypted": {
+                "$ref": "#/components/examples/tokenOperationEncryptedResponse_ACSP"
+              },
+              "ACSC - Encrypted": {
+                "$ref": "#/components/examples/tokenOperationEncryptedResponse_ACSC"
+              },
+              "ACSP - Decrypted": {
+                "$ref": "#/components/examples/tokenOperationDecryptedResponseExampleACSP"
+              },
+              "ACSC - Decrypted": {
+                "$ref": "#/components/examples/tokenOperationDecryptedResponseExampleACSC"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/TokenOperationResponse"
+            }
+          }
+        },
+        "description": "Request successfully."
+      },
+      "token_operation_400": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "Invalid request body": {
+                "$ref": "#/components/examples/invalid_req_body"
+              },
+              "Missing data element": {
+                "$ref": "#/components/examples/missing_data_element"
+              },
+              "Invalid encryption field": {
+                "$ref": "#/components/examples/invalid_encryption_field"
+              },
+              "During the encryption or signing, the bank public key currently in use was found to have expired": {
+                "$ref": "#/components/examples/inbound_bank_key_expired"
+              },
+              "During the encryption or signing,the client public key currently in use was found to have expired": {
+                "$ref": "#/components/examples/inbound_client_key_expired"
+              },
+              "Payload not encrypted": {
+                "$ref": "#/components/examples/payload_not_encrypted"
+              },
+              "Request encrypted payload is invalid, data has been changed": {
+                "$ref": "#/components/examples/payload_tampered_with"
+              },
+              "Invalid client private key": {
+                "$ref": "#/components/examples/invalid_client_private_key"
+              },
+              "Invalid bank public key": {
+                "$ref": "#/components/examples/invalid_bank_public_key"
+              },
+              "Missing Mandatory Filed": {
+                "$ref": "#/components/examples/missing_mandatory_field"
+              },
+              "Invalid Mandatory Filed": {
+                "$ref": "#/components/examples/invalid_mandatory_field"
+              },
+              "Invalid decryption Payload": {
+                "$ref": "#/components/examples/invalid_decryption_payload"
+              },
+              "Duplicate request": {
+                "$ref": "#/components/examples/duplicate_request"
+              },
+              "Currency not match": {
+                "$ref": "#/components/examples/ccy_not_match"
+              },
+              "Insufficient Account/Wallet balance": {
+                "$ref": "#/components/examples/insufficient_balance"
+              },
+              "Transfers between the two countries are not permitted": {
+                "$ref": "#/components/examples/country_not_permit"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse4field"
+            }
+          }
+        },
+        "description": "Bad Request."
+      },
+      "tds_401": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "Missing profile id or secret": {
+                "$ref": "#/components/examples/missing_profile_id_or_secret"
+              },
+              "Invalid profile id or secret": {
+                "$ref": "#/components/examples/invalid_profile_id_or_secret"
+              },
+              "Invalid authorization": {
+                "$ref": "#/components/examples/invalid_authorization"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse6field"
+            }
+          }
+        },
+        "description": "Unauthorized."
+      },
+      "tds_403": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "The wallet has not been created, or it is not linked to a bank account in request": {
+                "$ref": "#/components/examples/invalid_profile"
+              },
+              "The Profile and account are not linked within HSBC": {
+                "$ref": "#/components/examples/invalid_wallet"
+              },
+              "Request Blocked Due To Security Policy": {
+                "$ref": "#/components/examples/violation_security_policy"
+              },
+              "Sanction Country check failed": {
+                "$ref": "#/components/examples/sanctioned_country"
+              },
+              "When the client attempts to invoke an API without the necessary permissions enabled in CDP": {
+                "$ref": "#/components/examples/entitlement_check_failed"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse6field"
+            }
+          }
+        },
+        "description": "Forbidden."
+      },
+      "token_operation_500": {
+        "content": {
+          "application/json": {
+            "examples": {
+              "Technical Error in Encryption or Decryption Process": {
+                "$ref": "#/components/examples/crypto_tech_error"
+              },
+              "Encryption or Signing Failure In Accounting Transaction Request": {
+                "$ref": "#/components/examples/trans_encryption_or_signning_failure"
+              },
+              "Encryption or Signing Failure In Enquiry Request": {
+                "$ref": "#/components/examples/enquiry_encryption_or_signning_failure"
+              },
+              "Bank Public Key Expire During The Encryption Or Signing": {
+                "$ref": "#/components/examples/outbound_bank_key_expired"
+              },
+              "Client Public Key Expire During The Encryption Or Signing": {
+                "$ref": "#/components/examples/outbound_client_key_expired"
+              },
+              "System Error occur In Accounting Transaction Request": {
+                "$ref": "#/components/examples/resubmit_60_second"
+              },
+              "System Error occur In Enquiry Request": {
+                "$ref": "#/components/examples/perform_enquiry"
+              }
+            },
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse6field"
+            }
+          }
+        },
+        "description": "Internal Server Error - Issue encountered within HSBC systems (internal server or solution component is not available). Clients should handle this as service unavailable."
+      }
+    },
+    "schemas": {
+      "TokenOperationRequest": {
+        "type": "object",
+        "required": [
+          "meta",
+          "data"
+        ],
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/TokenOperationRequestMeta"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TokenOperationRequestData"
+          }
+        }
+      },
+      "WalletBalanceEnquiryRequest": {
+        "type": "object",
+        "required": [
+          "meta",
+          "data"
+        ],
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/WalletBalanceEnquiryRequestMeta"
+          },
+          "data": {
+            "$ref": "#/components/schemas/WalletBalanceEnquiryRequestData"
+          }
+        }
+      },
+      "TransactionEnquiryRequest": {
+        "type": "object",
+        "required": [
+          "meta",
+          "data"
+        ],
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/TransactionEnquiryRequestMeta"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TransactionEnquiryRequestData"
+          }
+        }
+      },
+      "PushNotificationRequest": {
+        "type": "object",
+        "$ref": "#/components/schemas/PushNotificationRequestData"
+      },
+      "TokenOperationRequestMeta": {
+        "type": "object",
+        "required": [
+          "version",
+          "function",
+          "reqTime"
+        ],
+        "properties": {
+          "version": {
+            "type": "string",
+            "maxLength": 8,
+            "example": "2.0"
+          },
+          "function": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "API interface",
+            "enum": [
+              "transferToken",
+              "mintToken",
+              "redeemToken"
+            ],
+            "example": "transferToken"
+          },
+          "reqTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-12-15T09:54:30.590Z"
+          }
+        }
+      },
+      "TokenOperationRequestData": {
+        "description": "Supports either plaintext payload or encrypted cipherMessage.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TokenOperationRequestDataDecrypted"
+          },
+          {
+            "$ref": "#/components/schemas/RequestDataEncrypted"
+          }
+        ]
+      },
+      "TokenOperationRequestDataDecrypted": {
+        "type": "object",
+        "required": [
+          "payload"
+        ],
+        "properties": {
+          "payload": {
+            "$ref": "#/components/schemas/TokenOperationPayload"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RequestDataEncrypted": {
+        "type": "object",
+        "required": [
+          "cipherMessage"
+        ],
+        "properties": {
+          "cipherMessage": {
+            "type": "string",
+            "description": "Encrypted request message (cipher text)",
+            "example": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGlu"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WalletBalanceEnquiryRequestMeta": {
+        "type": "object",
+        "required": [
+          "version",
+          "function",
+          "reqTime"
+        ],
+        "properties": {
+          "version": {
+            "type": "string",
+            "maxLength": 8,
+            "example": "2.0"
+          },
+          "function": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "API interface",
+            "enum": [
+              "enquiryBalance"
+            ],
+            "example": "enquiryBalance"
+          },
+          "reqTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-12-15T09:54:30.590Z"
+          }
+        }
+      },
+      "WalletBalanceEnquiryRequestData": {
+        "description": "Supports either plaintext payload or encrypted cipherMessage.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/WalletBalanceEnquiryRequestDataDecrypted"
+          },
+          {
+            "$ref": "#/components/schemas/RequestDataEncrypted"
+          }
+        ]
+      },
+      "WalletBalanceEnquiryRequestDataDecrypted": {
+        "type": "object",
+        "required": [
+          "payload"
+        ],
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "acctBal"
+            ],
+            "properties": {
+              "acctBal": {
+                "$ref": "#/components/schemas/AcctBal"
+              }
+            }
+          }
+        }
+      },
+      "TransactionEnquiryRequestMeta": {
+        "type": "object",
+        "required": [
+          "version",
+          "function",
+          "reqTime"
+        ],
+        "properties": {
+          "version": {
+            "type": "string",
+            "maxLength": 8,
+            "example": "2.0"
+          },
+          "function": {
+            "type": "string",
+            "maxLength": 128,
+            "description": "API interface",
+            "enum": [
+              "enquiryTransactionHistory"
+            ],
+            "example": "enquiryTransactionHistory"
+          },
+          "reqTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-12-15T09:54:30.590Z"
+          }
+        }
+      },
+      "TransactionEnquiryRequestData": {
+        "description": "Supports either plaintext payload or encrypted cipherMessage.",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TransactionEnquiryRequestPayloadDecrypted"
+          },
+          {
+            "$ref": "#/components/schemas/RequestDataEncrypted"
+          }
+        ]
+      },
+      "TransactionEnquiryRequestPayloadDecrypted": {
+        "type": "object",
+        "required": [
+          "account",
+          "pmtTp",
+          "page"
+        ],
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/CashAccount"
+          },
+          "pmtTp": {
+            "type": "string",
+            "maxLength": 4,
+            "description": "The type of payment.\nPT00: All (default)\nPT01: transfer token\nPT02: mint token\nPT03: redeem token\n",
+            "enum": [
+              "PT00",
+              "PT01",
+              "PT02",
+              "PT03"
+            ],
+            "example": "PT00"
+          },
+          "pmtId": {
+            "$ref": "#/components/schemas/PmtId"
+          },
+          "period": {
+            "$ref": "#/components/schemas/Period"
+          },
+          "page": {
+            "$ref": "#/components/schemas/Page"
+          }
+        }
+      },
+      "PushNotificationRequestData": {
+        "type": "object",
+        "required": [
+          "srcSysId",
+          "custRelId",
+          "subscriptionId",
+          "eventCat",
+          "eventId",
+          "eventFrmt",
+          "event"
+        ],
+        "properties": {
+          "srcSysId": {
+            "type": "string",
+            "description": "Source system name that initiates the push notification. This field shall be populated as HDSU.",
+            "example": "HDSU"
+          },
+          "custRelId": {
+            "type": "string",
+            "description": "Profile ID assigned to the client by CDP during onboarding."
+          },
+          "subscriptionId": {
+            "type": "string",
+            "description": "Subscription ID assigned to the client by CDP during onboarding."
+          },
+          "eventCat": {
+            "type": "string",
+            "description": "Event category of the notification. Sourced from the \"x-eventCat\" header in HDSU."
+          },
+          "eventId": {
+            "type": "string",
+            "description": "Used to correlate this push notification with the token operation request that triggered it."
+          },
+          "eventFrmt": {
+            "type": "string",
+            "description": "The format of the result returned to the client in the notification. This field shall be populated as JSON.",
+            "example": "JSON"
+          },
+          "trackId": {
+            "type": "string",
+            "description": "Not applicable in this scenario."
+          },
+          "event": {
+            "description": "Encrypted (string) or decrypted (object) payload of the push notification message.",
+            "oneOf": [
+              {
+                "title": "EncryptedEvent",
+                "type": "string",
+                "description": "Encrypted payload (cipher text)",
+                "example": "PFJlc3BvbnNlPg0KICA8UGF5bWVudElkPjwvUGF5bWVudElkPg0KICA8UG2U+"
+              },
+              {
+                "title": "DecryptedEvent",
+                "type": "object",
+                "required": [
+                  "meta",
+                  "data"
+                ],
+                "properties": {
+                  "meta": {
+                    "type": "object",
+                    "required": [
+                      "version",
+                      "function",
+                      "respTime",
+                      "TxSts"
+                    ],
+                    "properties": {
+                      "version": {
+                        "type": "string",
+                        "maxLength": 8,
+                        "example": "2.0"
+                      },
+                      "function": {
+                        "type": "string",
+                        "maxLength": 128,
+                        "enum": [
+                          "statusUpdate"
+                        ],
+                        "example": "statusUpdate"
+                      },
+                      "reqTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-04-14T03:34:30Z"
+                      },
+                      "TxSts": {
+                        "type": "string",
+                        "maxLength": 4,
+                        "enum": [
+                          "ACSC",
+                          "ACSP",
+                          "RJCT"
+                        ],
+                        "example": "ACSC"
+                      },
+                      "txStsDesc": {
+                        "type": "string",
+                        "maxLength": 128,
+                        "description": "Transaction Status Description",
+                        "example": "Payment has been completed."
+                      },
+                      "stsRsnInf": {
+                        "$ref": "#/components/schemas/StsRsnInf"
+                      }
+                    }
+                  },
+                  "data": {
+                    "type": "object",
+                    "required": [
+                      "payload"
+                    ],
+                    "properties": {
+                      "payload": {
+                        "type": "object",
+                        "required": [
+                          "resultInfo"
+                        ],
+                        "properties": {
+                          "resultInfo": {
+                            "type": "object",
+                            "required": [
+                              "orgnlGrpInfAndSts",
+                              "TxInfAndSts"
+                            ],
+                            "properties": {
+                              "orgnlGrpInfAndSts": {
+                                "$ref": "#/components/schemas/OrgnlGrpInfAndStsInfo"
+                              },
+                              "TxInfAndSts": {
+                                "allOf": [
+                                  {
+                                    "$ref": "#/components/schemas/TxInfAndSts"
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "txStsDesc": {
+                                        "type": "string",
+                                        "maxLength": 128,
+                                        "example": "Payment has been completed."
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "TokenOperationPayload": {
+        "type": "object",
+        "required": [
+          "transactionId",
+          "endToEndIdentification",
+          "debtor",
+          "debtorAccount",
+          "debtorAgent",
+          "creditTransferTransactionInformation"
+        ],
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "maxLength": 23,
+            "description": "Transaction ID (provided by client's application)",
+            "example": "TK26041411263131"
+          },
+          "endToEndIdentification": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "End to end identification (provided by client's application)",
+            "example": "BC26041411263131"
+          },
+          "debtor": {
+            "$ref": "#/components/schemas/PartyIdentification"
+          },
+          "debtorAccount": {
+            "$ref": "#/components/schemas/CashAccount"
+          },
+          "debtorAgent": {
+            "$ref": "#/components/schemas/BranchAndFinancialInstitutionIdentification"
+          },
+          "creditTransferTransactionInformation": {
+            "$ref": "#/components/schemas/CreditTransferTransaction"
+          }
+        }
+      },
+      "PartyIdentification": {
+        "type": "object",
+        "required": [
+          "name",
+          "postalAddress"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 140,
+            "example": "AAA Comp Lmt"
+          },
+          "postalAddress": {
+            "$ref": "#/components/schemas/PostalAddress"
+          }
+        }
+      },
+      "PostalAddress": {
+        "type": "object",
+        "required": [
+          "country",
+          "TwnNm"
+        ],
+        "properties": {
+          "country": {
+            "type": "string",
+            "maxLength": 2,
+            "example": "US"
+          },
+          "TwnNm": {
+            "type": "string",
+            "maxLength": 35,
+            "example": "Amsterdam"
+          },
+          "addressLines": {
+            "type": "array",
+            "description": "Max 7 lines, each max 70 chars. Mandatory for US related transactions.",
+            "maxItems": 7,
+            "items": {
+              "type": "string",
+              "maxLength": 70
+            }
+          },
+          "AdrTp": {
+            "type": "string",
+            "maxLength": 4,
+            "description": "ADDR/PBOX/HOME/BIZZ/MLTO/DLVY"
+          },
+          "Dept": {
+            "type": "string",
+            "maxLength": 70
+          },
+          "SubDept": {
+            "type": "string",
+            "maxLength": 70
+          },
+          "StrtNm": {
+            "type": "string",
+            "maxLength": 70
+          },
+          "BldgNb": {
+            "type": "string",
+            "maxLength": 16
+          },
+          "PstCd": {
+            "type": "string",
+            "maxLength": 16
+          },
+          "CtrySubDvsn": {
+            "type": "string",
+            "maxLength": 35
+          }
+        }
+      },
+      "CashAccount": {
+        "type": "object",
+        "required": [
+          "identification"
+        ],
+        "properties": {
+          "identification": {
+            "$ref": "#/components/schemas/AccountIdentification"
+          },
+          "currency": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Optional for wallet id and wallet alias",
+            "example": "USD"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 140,
+            "description": "Mandatory for multi-token-service provider",
+            "example": "AAA Comp Lmt"
+          }
+        }
+      },
+      "AccountIdentification": {
+        "description": "Either other or IBAN must be provided.",
+        "oneOf": [
+          {
+            "title": "IBAN",
+            "type": "object",
+            "required": [
+              "IBAN"
+            ],
+            "properties": {
+              "IBAN": {
+                "$ref": "#/components/schemas/IBAN"
+              }
+            }
+          },
+          {
+            "title": "Other",
+            "type": "object",
+            "required": [
+              "other"
+            ],
+            "properties": {
+              "other": {
+                "$ref": "#/components/schemas/GenericFinancialIdentification"
+              }
+            }
+          }
+        ]
+      },
+      "IBAN": {
+        "type": "string",
+        "maxLength": 34,
+        "pattern": "^[A-Z]{2}[0-9]{2}[a-zA-Z0-9]{1,30}$"
+      },
+      "GenericFinancialIdentification": {
+        "type": "object",
+        "required": [
+          "identification",
+          "schemeName"
+        ],
+        "properties": {
+          "identification": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "Wallet id / wallet alias / account id",
+            "example": 0
+          },
+          "schemeName": {
+            "$ref": "#/components/schemas/SchemeName"
+          }
+        }
+      },
+      "SchemeName": {
+        "type": "object",
+        "required": [
+          "proprietary"
+        ],
+        "properties": {
+          "proprietary": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "WLID (wallet id) / WLAS (wallet alias) / ACID (account id)",
+            "example": "WLID"
+          },
+          "tokenProperties": {
+            "$ref": "#/components/schemas/TokenProperties"
+          }
+        }
+      },
+      "TokenProperties": {
+        "description": "Either tokenAddress or tokenAlias should be provided.",
+        "oneOf": [
+          {
+            "title": "TokenAddress",
+            "type": "object",
+            "required": [
+              "tokenAddress"
+            ],
+            "properties": {
+              "tokenAddress": {
+                "type": "string",
+                "maxLength": 64,
+                "example": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            }
+          },
+          {
+            "title": "TokenAlias",
+            "type": "object",
+            "required": [
+              "tokenAlias"
+            ],
+            "properties": {
+              "tokenAlias": {
+                "type": "string",
+                "maxLength": 35,
+                "example": "HK.HSBC.HKD.TD"
+              }
+            }
+          }
+        ]
+      },
+      "BranchAndFinancialInstitutionIdentification": {
+        "type": "object",
+        "required": [
+          "financialInstitutionIdentification"
+        ],
+        "properties": {
+          "financialInstitutionIdentification": {
+            "$ref": "#/components/schemas/FinancialInstitutionIdentification"
+          },
+          "branchIdentification": {
+            "$ref": "#/components/schemas/BranchData"
+          }
+        }
+      },
+      "FinancialInstitutionIdentification": {
+        "type": "object",
+        "properties": {
+          "BIC": {
+            "type": "string",
+            "maxLength": 11,
+            "description": "Optional for wallet id or wallet alias; mandatory for debtor/creditor agent if using bank account",
+            "example": "MRMDUS33"
+          },
+          "postalAddress": {
+            "$ref": "#/components/schemas/PostalAddress"
+          }
+        }
+      },
+      "BranchData": {
+        "type": "object",
+        "properties": {
+          "identification": {
+            "type": "string",
+            "maxLength": 35,
+            "example": "BANKHKHK"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 140,
+            "example": "BANKHK"
+          },
+          "postalAddress": {
+            "$ref": "#/components/schemas/PostalAddress"
+          }
+        }
+      },
+      "CreditTransferTransaction": {
+        "type": "object",
+        "required": [
+          "instructedAmount",
+          "creditorAgent",
+          "creditorAccount",
+          "creditor"
+        ],
+        "properties": {
+          "instructedAmount": {
+            "$ref": "#/components/schemas/CurrencyAndAmount"
+          },
+          "creditorAgent": {
+            "$ref": "#/components/schemas/BranchAndFinancialInstitutionIdentification"
+          },
+          "creditorAccount": {
+            "$ref": "#/components/schemas/CashAccount"
+          },
+          "creditor": {
+            "$ref": "#/components/schemas/PartyIdentification"
+          },
+          "relatedRemittanceInformations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemittanceLocation"
+            }
+          },
+          "remittanceInformation": {
+            "$ref": "#/components/schemas/RemittanceInformation"
+          },
+          "instructionForCreditorAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstructionForCreditorAgents"
+            }
+          },
+          "Purp": {
+            "$ref": "#/components/schemas/ProprietaryInfo"
+          }
+        }
+      },
+      "CurrencyAndAmount": {
+        "type": "object",
+        "required": [
+          "currency",
+          "amount"
+        ],
+        "properties": {
+          "currency": {
+            "type": "string",
+            "maxLength": 3,
+            "pattern": "^[A-Z]{3}$",
+            "description": "Currency code",
+            "example": "USD"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount decimal",
+            "example": 8.88
+          }
+        }
+      },
+      "RemittanceLocation": {
+        "type": "object",
+        "properties": {
+          "remittanceIdentification": {
+            "type": "string",
+            "maxLength": 35,
+            "example": "ABCDEFG"
+          },
+          "remittanceLocationData": {
+            "$ref": "#/components/schemas/RemittanceLocationData"
+          }
+        }
+      },
+      "RemittanceLocationData": {
+        "type": "object",
+        "properties": {
+          "Method": {
+            "type": "string",
+            "description": "Method used to deliver the remittance advice information",
+            "enum": [
+              "FAXI",
+              "EDIC",
+              "URID",
+              "EMAL",
+              "POST",
+              "SMSM"
+            ]
+          },
+          "electronicAddress": {
+            "type": "string",
+            "maxLength": 2048,
+            "example": "abc@xxmail.com"
+          },
+          "postalAddress": {
+            "$ref": "#/components/schemas/PostalAddress"
+          }
+        }
+      },
+      "RemittanceInformation": {
+        "type": "object",
+        "properties": {
+          "unstructured": {
+            "type": "string",
+            "description": "Support up to 4 lines with max 35 characters per line",
+            "maxLength": 140,
+            "example": "Remittance IT Test"
+          }
+        }
+      },
+      "InstructionForCreditorAgents": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "maxLength": 4,
+            "example": "HOLD"
+          },
+          "instructionInformation": {
+            "type": "string",
+            "maxLength": 140,
+            "example": "PPRO"
+          }
+        }
+      },
+      "ProprietaryInfo": {
+        "description": "Either Proprietary or Cd must be provided.",
+        "oneOf": [
+          {
+            "title": "Proprietary",
+            "type": "object",
+            "required": [
+              "Proprietary"
+            ],
+            "properties": {
+              "Proprietary": {
+                "type": "string",
+                "maxLength": 140,
+                "example": "PPRO"
+              }
+            }
+          },
+          {
+            "title": "Cd",
+            "type": "object",
+            "required": [
+              "Cd"
+            ],
+            "properties": {
+              "Cd": {
+                "type": "string",
+                "maxLength": 4,
+                "example": "HOLD"
+              }
+            }
+          }
+        ]
+      },
+      "AcctBal": {
+        "type": "object",
+        "required": [
+          "acctNo"
+        ],
+        "properties": {
+          "acctNo": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "Wallet ID or Wallet Alias.\nProvide Wallet ID If acctTyp = \"WLID\"\nProvide Wallet Alias If acctTyp = \"WLAS\"\n",
+            "example": 8.860874330555158e+47
+          },
+          "acctCtry": {
+            "type": "string",
+            "maxLength": 2,
+            "description": "Account Country",
+            "example": "HK"
+          },
+          "clrSysCd": {
+            "type": "string",
+            "maxLength": 4,
+            "description": "Clearing system code (e.g. HSBC, HASE)",
+            "example": "HSBC"
+          },
+          "acctCcy": {
+            "type": "string",
+            "maxLength": 3,
+            "description": "Account Currency",
+            "example": "USD"
+          },
+          "acctTyp": {
+            "type": "string",
+            "maxLength": 4,
+            "description": "Wallet Type (\"WLID\" wallet id / \"WLAS\" wallet alias)",
+            "enum": [
+              "WLID",
+              "WLAS"
+            ],
+            "example": "WLID"
+          },
+          "tokenAddress": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "Either a token address or a token alias must be provided to inquire the token balance.",
+            "example": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "tokenAlias": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Either a token address or a token alias must be provided to inquire the token balance.",
+            "example": "HK.HSBC.HKD.TD"
+          }
+        }
+      },
+      "PmtId": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "maxLength": 23,
+            "example": "316c02a23a124112bde611364ff44726"
+          },
+          "endToEndIdentification": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Optional in transaction history inquiry (mandatory in token operation and fund transfer).",
+            "example": "BC20240411000001"
+          }
+        }
+      },
+      "Period": {
+        "type": "object",
+        "properties": {
+          "frDt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Start date of the range.\n\"from date\" < last month is not allowed.\n",
+            "example": "2024-04-03T14:33:59.000Z"
+          },
+          "toDt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "End date of the range.\nEnd date < from date is not allowed.\n",
+            "example": "2024-04-04T20:33:59.000Z"
+          }
+        }
+      },
+      "Page": {
+        "type": "object",
+        "required": [
+          "pgSz",
+          "seqMtd"
+        ],
+        "properties": {
+          "pgSz": {
+            "type": "number",
+            "description": "Total number of records per page (The maximum value is 200)",
+            "example": 20
+          },
+          "seqMtd": {
+            "type": "string",
+            "description": "The sequence of the record (A-ASC / D-DESC)",
+            "enum": [
+              "A",
+              "D"
+            ],
+            "example": "A"
+          },
+          "currPg": {
+            "type": "number",
+            "description": "Current page number. First page is 1. Default page is 1.",
+            "example": 1
+          }
+        }
+      },
+      "PushRequestJson": {
+        "description": "Push Notification details.",
+        "type": "object",
+        "required": [
+          "srcSysId",
+          "custRelId",
+          "subscriptionId",
+          "trackId",
+          "eventCat",
+          "eventId",
+          "eventFrmt",
+          "event"
+        ],
+        "properties": {
+          "srcSysId": {
+            "type": "string",
+            "description": "Source system name that initiates the push notification. This field shall be populated as HDSU."
+          },
+          "custRelId": {
+            "type": "string",
+            "description": "Profile ID assigned to the client by CDP during onboarding."
+          },
+          "subscriptionId": {
+            "type": "string",
+            "description": "Subscription ID assigned to the client by CDP during onboarding."
+          },
+          "trackId": {
+            "type": "string",
+            "description": "This field is used for Push Notification in other HSBC payment processes and is not applicable in this scenario."
+          },
+          "eventCat": {
+            "type": "string",
+            "description": "Event category of the notification. Sourced from the \"x-eventCat\" header in HDSU."
+          },
+          "eventId": {
+            "type": "string",
+            "description": "Used to correlate this push notification with the token operation request that triggered it."
+          },
+          "eventFrmt": {
+            "type": "string",
+            "description": "The format of the result returned to the client in the notification. This field shall be populated as JSON."
+          },
+          "event": {
+            "type": "string",
+            "description": "Encrypted payload of the push notification message, containing all business information related to the notification."
+          }
+        }
+      },
+      "ErrorResponse4field": {
+        "description": "Error Response Structure.",
+        "properties": {
+          "type": {
+            "description": "Specifies authenticated fail type.",
+            "type": "string"
+          },
+          "detail": {
+            "description": "Specifies authenticated fail detail.",
+            "type": "string"
+          },
+          "instance": {
+            "description": "Specifies uuid to identify this request .",
+            "type": "string"
+          },
+          "errorDateTime": {
+            "description": "Mandatory.ISO datetime of response, e.g. 2021-09-29T11:42:52.332Z",
+            "type": "string"
+          }
+        },
+        "title": "Error Response",
+        "type": "object"
+      },
+      "ErrorResponse6field": {
+        "description": "Error Response Structure.",
+        "properties": {
+          "type": {
+            "description": "Specifies authenticated fail type.",
+            "type": "string"
+          },
+          "detail": {
+            "description": "Specifies authenticated fail detail.",
+            "type": "string"
+          },
+          "instance": {
+            "description": "Specifies uuid to identify this request .",
+            "type": "string"
+          },
+          "title": {
+            "description": "Conditional. Same as the value of the type field.",
+            "type": "string"
+          },
+          "status": {
+            "description": "Conditional.Same as the HTTP code.",
+            "type": "string"
+          },
+          "errorDateTime": {
+            "description": "Mandatory.ISO datetime of response, e.g. 2021-09-29T11:42:52.332Z",
+            "type": "string"
+          }
+        },
+        "title": "Error Response",
+        "type": "object"
+      },
+      "ResponseMeta": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TokenOperationRequestMeta"
+          },
+          {
+            "type": "object",
+            "required": [
+              "instance"
+            ],
+            "properties": {
+              "instance": {
+                "type": "string",
+                "maxLength": 64,
+                "description": "Response instance id",
+                "example": "3f2a9c1d-7b4e-4c8f-9a3d-1e6f0b2c4d8a"
+              }
+            }
+          }
+        ]
+      },
+      "EnquiryResponseDataEncrytped": {
+        "type": "object",
+        "required": [
+          "cipherMessage"
+        ],
+        "properties": {
+          "cipherMessage": {
+            "type": "string",
+            "description": "Encrypted message (cipher text)",
+            "example": "PFJlc3BvbnNlPg0KICA8UGF5bWVudElkPmI3ZTBmZGFjLWQ4YmQtNDk1MC1iZDNhLTM4ZmFjNWNjMjVkZjwvUGF5bWVudElkPg0KICA8UG2U+"
+          }
+        }
+      },
+      "TokenOperationResponse": {
+        "type": "object",
+        "required": [
+          "meta",
+          "data"
+        ],
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TokenOperationResponse200Data"
+          }
+        }
+      },
+      "TokenOperationResponse200Data": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TokenOperationResponseDataDecrypted"
+          },
+          {
+            "$ref": "#/components/schemas/TokenOperationResponseDataEncrypted"
+          }
+        ]
+      },
+      "TokenOperationResponseDataEncrypted": {
+        "type": "object",
+        "required": [
+          "statusCode",
+          "statusDesc",
+          "cipherMessage"
+        ],
+        "properties": {
+          "statusCode": {
+            "type": "string",
+            "maxLength": 4,
+            "description": "Transaction status code",
+            "example": "ACSP"
+          },
+          "statusDesc": {
+            "type": "string",
+            "maxLength": 512,
+            "description": "Transaction status description",
+            "example": "AcceptedSettlementInProcess -  All preceding checks such as technical validation and customer profile were successful and therefore the payment initiation has been accepted for execution."
+          },
+          "cipherMessage": {
+            "type": "string",
+            "description": "Encrypted message (cipher text)",
+            "example": "PFJlc3BvbnNlPg0KICA8UGF5bWVudElkPmI3ZTBmZGFjLWQ4YmQtNDk1MC1iZDNhLTM4ZmFjNWNjMjVkZjwvUGF5bWVudElkPg0KICA8UG2U+"
+          }
+        }
+      },
+      "TokenOperationResponseDataDecrypted": {
+        "type": "object",
+        "required": [
+          "payload"
+        ],
+        "properties": {
+          "payload": {
+            "$ref": "#/components/schemas/TokenOperationResponsePayload"
+          }
+        }
+      },
+      "TokenOperationResponsePayload": {
+        "type": "object",
+        "required": [
+          "resultInfo"
+        ],
+        "properties": {
+          "resultInfo": {
+            "$ref": "#/components/schemas/Pain002"
+          }
+        }
+      },
+      "Pain002": {
+        "type": "object",
+        "required": [
+          "orgnlGrpInfAndSts",
+          "txInfAndSts"
+        ],
+        "properties": {
+          "orgnlGrpInfAndSts": {
+            "$ref": "#/components/schemas/OrgnlGrpInfAndStsInfo"
+          },
+          "txInfAndSts": {
+            "$ref": "#/components/schemas/TxInfAndSts"
+          }
+        }
+      },
+      "OrgnlGrpInfAndStsInfo": {
+        "type": "object",
+        "required": [
+          "orgnlMsgId"
+        ],
+        "properties": {
+          "orgnlMsgId": {
+            "type": "string",
+            "maxLength": 35,
+            "example": "7495f756-813d-4e61-9891-6eed71854251"
+          },
+          "orgnlCreDtTm": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-04-14T03:33:30Z"
+          }
+        }
+      },
+      "TxInfAndSts": {
+        "type": "object",
+        "required": [
+          "orgnlTransactionId",
+          "orgnlEndToEndId",
+          "txSts"
+        ],
+        "properties": {
+          "orgnlTransactionId": {
+            "type": "string",
+            "maxLength": 23,
+            "example": "TK26041411263131"
+          },
+          "orgnlEndToEndId": {
+            "type": "string",
+            "maxLength": 35,
+            "example": "BC26041411263131"
+          },
+          "txSts": {
+            "type": "string",
+            "maxLength": 4,
+            "enum": [
+              "ACSC",
+              "ACSP",
+              "RJCT"
+            ],
+            "example": "ACSP"
+          },
+          "stsRsnInf": {
+            "$ref": "#/components/schemas/StsRsnInf"
+          },
+          "accptncDtTm": {
+            "type": "string",
+            "format": "date-time",
+            "description": "For status = ACSC only",
+            "example": "2026-04-14T03:34:20Z"
+          }
+        }
+      },
+      "StsRsnInf": {
+        "type": "object",
+        "properties": {
+          "addtlInf": {
+            "type": "string",
+            "maxLength": 315,
+            "description": "Additional information for status = RJCT",
+            "example": "HDSU1014-Insufficient Account/Wallet Balance"
+          }
+        }
+      },
+      "WalletBalanceEnquiryResponse": {
+        "type": "object",
+        "required": [
+          "meta",
+          "data"
+        ],
+        "properties": {
+          "meta": {
+            "type": "object",
+            "required": [
+              "version",
+              "function",
+              "respTime",
+              "instance"
+            ],
+            "properties": {
+              "version": {
+                "type": "string",
+                "maxLength": 8,
+                "example": "2.0"
+              },
+              "function": {
+                "type": "string",
+                "maxLength": 128,
+                "enum": [
+                  "enquiryBalance"
+                ],
+                "example": "enquiryBalance"
+              },
+              "respTime": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2025-12-15T09:54:30.590Z"
+              },
+              "instance": {
+                "type": "string",
+                "maxLength": 64,
+                "description": "Response instance id",
+                "example": "3f2a9c1d-7b4e-4c8f-9a3d-1e6f0b2c4d8a"
+              }
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/WalletBalanceEnquiryResponse200Data"
+          }
+        }
+      },
+      "WalletBalanceEnquiryResponse200Data": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/WalletBalanceEnquiryResponseDataDecrypted"
+          },
+          {
+            "$ref": "#/components/schemas/EnquiryResponseDataEncrytped"
+          }
+        ]
+      },
+      "WalletBalanceEnquiryResponseDataDecrypted": {
+        "type": "object",
+        "required": [
+          "payload"
+        ],
+        "properties": {
+          "payload": {
+            "type": "object",
+            "properties": {
+              "balance": {
+                "$ref": "#/components/schemas/Balance"
+              }
+            }
+          }
+        }
+      },
+      "Balance": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "Account number or Wallet Id or Wallet alias",
+            "example": "0a1b2c3d4f5g6h7i8j9k10l11m12n13o14p15q16r17st"
+          },
+          "bal": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Bal"
+            }
+          }
+        }
+      },
+      "Bal": {
+        "type": "object",
+        "properties": {
+          "amt": {
+            "$ref": "#/components/schemas/TokenAndAmount"
+          },
+          "holdAmt": {
+            "$ref": "#/components/schemas/TokenAndAmount"
+          }
+        }
+      },
+      "TokenAndAmount": {
+        "type": "object",
+        "required": [
+          "amt"
+        ],
+        "properties": {
+          "tokenAddress": {
+            "type": "string",
+            "maxLength": 64,
+            "description": "Either a token address or a token alias must be provided",
+            "example": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "tokenAlias": {
+            "type": "string",
+            "maxLength": 35,
+            "description": "Either a token address or a token alias must be provided",
+            "example": "HK.HSBC.HKD.TD"
+          },
+          "amt": {
+            "type": "number",
+            "description": "Amount decimal",
+            "example": 13.28
+          }
+        }
+      },
+      "TransactionEnquiryResponse": {
+        "type": "object",
+        "required": [
+          "meta",
+          "data"
+        ],
+        "properties": {
+          "meta": {
+            "type": "object",
+            "required": [
+              "version",
+              "function",
+              "respTime",
+              "instance"
+            ],
+            "properties": {
+              "version": {
+                "type": "string",
+                "maxLength": 8,
+                "example": "2.0"
+              },
+              "function": {
+                "type": "string",
+                "maxLength": 128,
+                "enum": [
+                  "enquiryTransactionHistory"
+                ],
+                "example": "enquiryTransactionHistory"
+              },
+              "respTime": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2025-12-15T09:54:30.590Z"
+              },
+              "instance": {
+                "type": "string",
+                "maxLength": 64,
+                "description": "Response instance id",
+                "example": "3f2a9c1d-7b4e-4c8f-9a3d-1e6f0b2c4d8a"
+              }
+            }
+          },
+          "data": {
+            "$ref": "#/components/schemas/TransactionEnquiryResponse200Data"
+          }
+        }
+      },
+      "TransactionEnquiryResponse200Data": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TransactionEnquiryResponseData"
+          },
+          {
+            "$ref": "#/components/schemas/EnquiryResponseDataEncrytped"
+          }
+        ]
+      },
+      "TransactionEnquiryResponseData": {
+        "type": "object",
+        "required": [
+          "payload"
+        ],
+        "properties": {
+          "payload": {
+            "$ref": "#/components/schemas/TransactionEnquiryResponsePayload"
+          }
+        }
+      },
+      "TransactionEnquiryResponsePayload": {
+        "type": "object",
+        "required": [
+          "hvNxtPg",
+          "noOfRec"
+        ],
+        "properties": {
+          "hvNxtPg": {
+            "type": "string",
+            "maxLength": 1,
+            "description": "Have next page (Y/N)",
+            "example": "N"
+          },
+          "noOfRec": {
+            "type": "number",
+            "description": "Total number of records.",
+            "example": 9
+          },
+          "pmtList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PmtListItem"
+            }
+          }
+        }
+      },
+      "PmtListItem": {
+        "type": "object",
+        "required": [
+          "pmtInf"
+        ],
+        "properties": {
+          "pmtInf": {
+            "$ref": "#/components/schemas/PmtInf"
+          }
+        }
+      },
+      "PmtInf": {
+        "type": "object",
+        "required": [
+          "pmtId",
+          "pmtSts",
+          "pmtTp",
+          "debtor",
+          "debtorAccount",
+          "debtorAgent",
+          "creditTransferTransactionInformation"
+        ],
+        "properties": {
+          "pmtId": {
+            "$ref": "#/components/schemas/PmtId"
+          },
+          "pmtSts": {
+            "type": "string",
+            "maxLength": 35,
+            "enum": [
+              "ACSC",
+              "ACSP",
+              "RJCT"
+            ],
+            "example": "ACSC"
+          },
+          "pmtTp": {
+            "type": "string",
+            "maxLength": 4,
+            "enum": [
+              "PT00",
+              "PT01",
+              "PT02",
+              "PT03"
+            ],
+            "example": "PT02"
+          },
+          "debtor": {
+            "$ref": "#/components/schemas/PartyIdentification"
+          },
+          "debtorAccount": {
+            "$ref": "#/components/schemas/CashAccount"
+          },
+          "debtorAgent": {
+            "$ref": "#/components/schemas/BranchAndFinancialInstitutionIdentification"
+          },
+          "creditTransferTransactionInformation": {
+            "$ref": "#/components/schemas/CreditTransferTransaction"
+          },
+          "AccptncDtTm": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Acceptance Date Time",
+            "example": "2026-04-14T03:33:30.456Z"
+          }
+        }
+      }
+    },
+    "examples": {
+      "mintTokenEncryptedRequestExample": {
+        "summary": "Create Token Encrypted Request Example",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "mintToken",
+            "reqTime": "2025-12-15T09:54:30.590Z"
+          },
+          "data": {
+            "cipherMessage": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGlu"
+          }
+        }
+      },
+      "transferTokenEncryptedRequestExample": {
+        "summary": "Transfer Token Encrypted Request Example",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "transferToken",
+            "reqTime": "2025-12-15T09:54:30.590Z"
+          },
+          "data": {
+            "cipherMessage": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGlu"
+          }
+        }
+      },
+      "redeemTokenEncryptedRequestExample": {
+        "summary": "Redeem Token Encrypted Request Example",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "redeemToken",
+            "reqTime": "2025-12-15T09:54:30.590Z"
+          },
+          "data": {
+            "cipherMessage": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGlu"
+          }
+        }
+      },
+      "mintTokenDecryptedRequestExample": {
+        "summary": "Create Token Decrypted Request Example",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "mintToken",
+            "reqTime": "2026-04-14T03:33:30z"
+          },
+          "data": {
+            "payload": {
+              "creditTransferTransactionInformation": {
+                "creditor": {
+                  "name": "AAA Comp Lmt",
+                  "postalAddress": {
+                    "addressLines": [
+                      "111 Road",
+                      "New York"
+                    ],
+                    "TwnNm": "Amsterdam",
+                    "country": "US"
+                  }
+                },
+                "creditorAccount": {
+                  "name": "AAA Comp Lmt",
+                  "currency": "USD",
+                  "identification": {
+                    "other": {
+                      "identification": "000000000000000000000000000000000000000",
+                      "schemeName": {
+                        "proprietary": "WLID",
+                        "tokenProperties": {
+                          "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                        }
+                      }
+                    }
+                  }
+                },
+                "creditorAgent": {
+                  "financialInstitutionIdentification": {
+                    "BIC": "MRMDUS33"
+                  }
+                },
+                "instructedAmount": {
+                  "amount": 8.88,
+                  "currency": "USD"
+                },
+                "Purp": {
+                  "Cd": "SALA"
+                },
+                "remittanceInformation": {
+                  "unstructured": "Remittance IT Test"
+                }
+              },
+              "debtor": {
+                "name": "AAA Comp Lmt",
+                "postalAddress": {
+                  "addressLines": [
+                    "111 Road",
+                    "New York"
+                  ],
+                  "TwnNm": "Amsterdam",
+                  "country": "US"
+                }
+              },
+              "debtorAccount": {
+                "name": "AAA Comp Lmt",
+                "currency": "USD",
+                "identification": {
+                  "other": {
+                    "identification": "000000000",
+                    "schemeName": {
+                      "proprietary": "ACID",
+                      "tokenProperties": {
+                        "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                      }
+                    }
+                  }
+                }
+              },
+              "debtorAgent": {
+                "financialInstitutionIdentification": {
+                  "BIC": "MRMDUS33"
+                }
+              },
+              "endToEndIdentification": "BC26041411263131",
+              "transactionId": "TK26041411263131"
+            }
+          }
+        }
+      },
+      "transferTokenDecryptedRequestExample": {
+        "summary": "Transfer Token Decrypted Request Example",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "transferToken",
+            "reqTime": "2026-04-03T09:25:02Z"
+          },
+          "data": {
+            "payload": {
+              "creditTransferTransactionInformation": {
+                "creditor": {
+                  "name": "BBB Comp Lmt",
+                  "postalAddress": {
+                    "addressLines": [
+                      "ABC Tower, ",
+                      "001 Road"
+                    ],
+                    "TwnNm": "Amsterdam",
+                    "country": "US"
+                  }
+                },
+                "creditorAccount": {
+                  "name": "BBB Comp Lmt",
+                  "currency": "USD",
+                  "identification": {
+                    "other": {
+                      "identification": "000000000000000000000000000000000000000",
+                      "schemeName": {
+                        "proprietary": "WLID",
+                        "tokenProperties": {
+                          "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                        }
+                      }
+                    }
+                  }
+                },
+                "creditorAgent": {
+                  "financialInstitutionIdentification": {
+                    "BIC": "MRMDUS33"
+                  }
+                },
+                "instructedAmount": {
+                  "amount": 1.15,
+                  "currency": "USD"
+                },
+                "Purp": {
+                  "Cd": "SALA"
+                },
+                "remittanceInformation": {
+                  "unstructured": "Remittance IT Test"
+                }
+              },
+              "debtor": {
+                "name": "AAA Comp Lmt",
+                "postalAddress": {
+                  "addressLines": [
+                    "111 Road",
+                    "New York"
+                  ],
+                  "TwnNm": "Amsterdam",
+                  "country": "US"
+                }
+              },
+              "debtorAccount": {
+                "name": "AAA Comp Lmt",
+                "currency": "USD",
+                "identification": {
+                  "other": {
+                    "identification": "000000000000000000000000000000000000000",
+                    "schemeName": {
+                      "proprietary": "WLID",
+                      "tokenProperties": {
+                        "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                      }
+                    }
+                  }
+                }
+              },
+              "debtorAgent": {
+                "financialInstitutionIdentification": {
+                  "BIC": "MRMDUS33"
+                }
+              },
+              "endToEndIdentification": "BC26041402001414",
+              "transactionId": "TK26041402001414"
+            }
+          }
+        }
+      },
+      "redeemTokenDecryptedRequestExample": {
+        "summary": "Redeem Token Decrypted Request Example",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "redeemToken",
+            "reqTime": "2026-04-14T03:33:40Z"
+          },
+          "data": {
+            "payload": {
+              "creditTransferTransactionInformation": {
+                "creditor": {
+                  "name": "AAA Comp Lmt",
+                  "postalAddress": {
+                    "addressLines": [
+                      "111 Road",
+                      "New York"
+                    ],
+                    "TwnNm": "Amsterdam",
+                    "country": "US"
+                  }
+                },
+                "creditorAccount": {
+                  "name": "AAA Comp Lmt",
+                  "currency": "USD",
+                  "identification": {
+                    "other": {
+                      "identification": "000000000",
+                      "schemeName": {
+                        "proprietary": "ACID",
+                        "tokenProperties": {
+                          "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                        }
+                      }
+                    }
+                  }
+                },
+                "creditorAgent": {
+                  "financialInstitutionIdentification": {
+                    "BIC": "MRMDUS33"
+                  }
+                },
+                "instructedAmount": {
+                  "amount": 0.15,
+                  "currency": "USD"
+                },
+                "Purp": {
+                  "Cd": "SALA"
+                },
+                "remittanceInformation": {
+                  "unstructured": "Remittance IT Test"
+                }
+              },
+              "debtor": {
+                "name": "AAA Comp Lmt",
+                "postalAddress": {
+                  "addressLines": [
+                    "111 Road",
+                    "New York"
+                  ],
+                  "TwnNm": "Amsterdam",
+                  "country": "US"
+                }
+              },
+              "debtorAccount": {
+                "name": "AAA Comp Lmt",
+                "currency": "USD",
+                "identification": {
+                  "other": {
+                    "identification": "000000000000000000000000000000000000000",
+                    "schemeName": {
+                      "proprietary": "WLID",
+                      "tokenProperties": {
+                        "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                      }
+                    }
+                  }
+                }
+              },
+              "debtorAgent": {
+                "financialInstitutionIdentification": {
+                  "BIC": "MRMDUS33"
+                }
+              },
+              "endToEndIdentification": "BC26041401222020",
+              "transactionId": "TK26041401222020"
+            }
+          }
+        }
+      },
+      "walletBalanceEnquiryEncryptedRequestExample": {
+        "summary": "Wallet Balance Enquiry Encrypted Request Example",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "enquiryBalance",
+            "reqTime": "2025-12-15T09:54:30.590Z"
+          },
+          "data": {
+            "cipherMessage": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGlu"
+          }
+        }
+      },
+      "walletBalanceEnquiryDecryptedRequestExample": {
+        "summary": "Wallet Balance Enquiry Decrypted Request Example",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "enquiryBalance",
+            "reqTime": "2026-04-14T14:40:45Z"
+          },
+          "data": {
+            "payload": {
+              "acctBal": {
+                "acctNo": "0a1b2c3d4f5g6h7i8j9k10l11m12n13o14p15q16r17st",
+                "acctTyp": "WLID",
+                "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              }
+            }
+          }
+        }
+      },
+      "transactionEnquiryEncryptedRequestExample": {
+        "summary": "Transaction Enquiry Encrypted Request Example",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "enquiryTransactionHistory",
+            "reqTime": "2025-12-15T09:54:30.590Z"
+          },
+          "data": {
+            "cipherMessage": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGlu"
+          }
+        }
+      },
+      "transactionEnquiryDecryptedRequestExample": {
+        "summary": "Transaction Enquiry Decrypted Request Example",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "enquiryTransactionHistory",
+            "reqTime": "2026-04-14T14:59:33Z"
+          },
+          "data": {
+            "payload": {
+              "account": {
+                "identification": {
+                  "other": {
+                    "identification": "000000000000000000000000000000000000000",
+                    "schemeName": {
+                      "proprietary": "WLID",
+                      "tokenProperties": {
+                        "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                      }
+                    }
+                  }
+                }
+              },
+              "pmtTp": "PT00",
+              "period": {
+                "frDt": "2024-04-03T14:33:59.000Z",
+                "toDt": "2024-04-04T20:33:59.000Z"
+              },
+              "page": {
+                "pgSz": 20,
+                "seqMtd": "A",
+                "currPg": 1
+              }
+            }
+          }
+        }
+      },
+      "pushNotificationEncryptedRequestExample": {
+        "summary": "Push Notification Encrypted Request Example(from HSBC to client)",
+        "value": {
+          "srcSysId": "HDSU",
+          "custRelId": "PIC12345678",
+          "subscriptionId": "1A2B3C4D5E6F7G8D9H10I11J",
+          "trackId": "",
+          "eventCat": "Token_Operation_Result",
+          "eventId": "TK26041411263131",
+          "eventFrmt": "JSON",
+          "event": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLToiIHN0YW5kYWxvbmU9Inllcy..."
+        }
+      },
+      "pushNotificationDecryptedRequestExampleACSC": {
+        "summary": "Push Notification Decrypted Request Example-ACSC (from HSBC to client)",
+        "value": {
+          "srcSysId": "HDSU",
+          "custRelId": "PIC12345678",
+          "subscriptionId": "1A2B3C4D5E6F7G8D9H10I11J",
+          "trackId": "",
+          "eventCat": "Token_Operation_Result",
+          "eventId": "TK26041411263131",
+          "eventFrmt": "JSON",
+          "event": {
+            "meta": {
+              "version": "2.0",
+              "function": "statusUpdate",
+              "reqTime": "2026-04-14T03:34:30Z",
+              "TxSts": "ACSC",
+              "txStsDesc": "Payment has been completed."
+            },
+            "data": {
+              "payload": {
+                "resultInfo": {
+                  "orgnlGrpInfAndSts": {
+                    "orgnlMsgId": "7495f756-813d-4e61-9891-6eed71854251",
+                    "orgnlCreDtTm": "2026-04-14T03:33:30Z"
+                  },
+                  "TxInfAndSts": {
+                    "orgnltransactionId": "TK26041411263131",
+                    "orgnlEndToEndId": "BC26041411263131",
+                    "txSts": "ACSC",
+                    "txStsDesc": "Payment has been completed.",
+                    "accptncDtTm": "2026-04-14T03:34:20Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "pushNotificationDecryptedRequestExampleACSP": {
+        "summary": "Push Notification Decrypted Request Example-ACSC (from HSBC to client)",
+        "value": {
+          "srcSysId": "HDSU",
+          "custRelId": "PIC12345678",
+          "subscriptionId": "1A2B3C4D5E6F7G8D9H10I11J",
+          "trackId": "",
+          "eventCat": "Token_Operation_Result",
+          "eventId": "TK26041411263131",
+          "eventFrmt": "JSON",
+          "event": {
+            "meta": {
+              "version": "2.0",
+              "function": "statusUpdate",
+              "reqTime": "2026-04-14T03:34:30Z",
+              "TxSts": "ACSP",
+              "txStsDesc": "Accepted Settlement In Process."
+            },
+            "data": {
+              "payload": {
+                "resultInfo": {
+                  "orgnlGrpInfAndSts": {
+                    "orgnlMsgId": "7495f756-813d-4e61-9891-6eed71854251",
+                    "orgnlCreDtTm": "2026-04-14T03:33:30Z"
+                  },
+                  "TxInfAndSts": {
+                    "orgnltransactionId": "TK26041411263131",
+                    "orgnlEndToEndId": "BC26041411263131",
+                    "txSts": "ACSC",
+                    "txStsDesc": "Payment has been completed.",
+                    "accptncDtTm": "2026-04-14T03:34:20Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "pushNotificationDecryptedRequestExampleRJCT": {
+        "summary": "Push Notification Decrypted Request Example-RJCT (from HSBC to client)",
+        "value": {
+          "srcSysId": "HDSU",
+          "custRelId": "PIC12345678",
+          "subscriptionId": "1A2B3C4D5E6F7G8D9H10I11J",
+          "trackId": "",
+          "eventCat": "Token_Operation_Result",
+          "eventId": "TK26041411263131",
+          "eventFrmt": "JSON",
+          "event": {
+            "meta": {
+              "version": "2.0",
+              "function": "statusUpdate",
+              "reqTime": "2026-04-14T03:34:30Z",
+              "TxSts": "RJCT",
+              "txStsDesc": "The payment has been rejected.",
+              "StsRsnInf": {
+                "AddtlInf": "HDSU1014-Insufficient Account/Wallet Balance"
+              }
+            },
+            "data": {
+              "payload": {
+                "resultInfo": {
+                  "orgnlGrpInfAndSts": {
+                    "orgnlMsgId": "7495f756-813d-4e61-9891-6eed71854251",
+                    "orgnlCreDtTm": "2026-04-14T03:33:30Z"
+                  },
+                  "TxInfAndSts": {
+                    "orgnltransactionId": "TK26041411263131",
+                    "orgnlEndToEndId": "BC26041411263131",
+                    "txSts": "RJCT",
+                    "txStsDesc": "The payment has been rejected.",
+                    "StsRsnInf": {
+                      "AddtlInf": "HDSU1014-Insufficient Account/Wallet Balance"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "tokenOperationEncryptedResponse_ACSP": {
+        "summary": "Token Operation Encrypted Response Example (ACSP)",
+        "value": {
+          "meta": {
+            "version": "2.0",
+            "function": "transferToken",
+            "respTime": "2025-12-15T09:54:30.590Z",
+            "instance": "3f2a9c1d-7b4e-4c8f-9a3d-1e6f0b2c4d8a"
+          },
+          "data": {
+            "statusCode": "ACSP",
+            "statusDesc": "AcceptedSettlementInProcess -  All preceding checks such as technical validation and customer profile were successful and therefore the payment initiation has been accepted for execution.",
+            "cipherMessage": "PFJlc3BvbnNlPg0KICA8UGF5bWVudElkPmI3ZTBmZGFjLWQ4YmQtNDk1MC1iZDNhLTM4ZmFjNWNjMjVkZjwvUGF5bWVudElkPg0KICA8UG2U+"
+          }
+        }
+      },
+      "tokenOperationEncryptedResponse_ACSC": {
+        "summary": "Token Operation Encrypted Response Example (ACSC)",
+        "value": {
+          "data": {
+            "statusCode": "ACSC",
+            "statusDesc": "AcceptedSettlementCompleted - Settlement on the account has been completed.",
+            "cipherMessage": "PFJlc3BvbnNlPg0KICA8UGF5bWVudElkPmI3ZTBmZGFjLWQ4YmQtNDk1MC1iZDNhLTM4ZmFjNWNjMjVkZjwvUGF5bWVudElkPg0KICA8UG2U+"
+          },
+          "meta": {
+            "version": "2.0",
+            "function": "transferToken",
+            "respTime": "2025-12-15T09:54:30.590Z",
+            "instance": "3f2a9c1d-7b4e-4c8f-9a3d-1e6f0b2c4d8a"
+          }
+        }
+      },
+      "tokenOperationDecryptedResponseExampleACSP": {
+        "summary": "Token Operation Decrypted Response Example (ACSP)",
+        "value": {
+          "data": {
+            "payload": {
+              "resultInfo": {
+                "orgnlGrpInfAndSts": {
+                  "orgnlMsgId": "7495f756-813d-4e61-9891-6eed71854251",
+                  "orgnlCreDtTm": "2026-04-14T03:33:30Z"
+                },
+                "txInfAndSts": {
+                  "orgnltransactionId": "TK26041411263131",
+                  "orgnlEndToEndId": "BC26041411263131",
+                  "txSts": "ACSP"
+                }
+              }
+            }
+          }
+        }
+      },
+      "tokenOperationDecryptedResponseExampleACSC": {
+        "summary": "Token Operation Decrypted Response Example (ACSC)",
+        "value": {
+          "data": {
+            "payload": {
+              "resultInfo": {
+                "orgnlGrpInfAndSts": {
+                  "orgnlMsgId": "7495f756-813d-4e61-9891-6eed71854251",
+                  "orgnlCreDtTm": "2026-04-14T03:33:30Z"
+                },
+                "txInfAndSts": {
+                  "orgnltransactionId": "TK26041411263131",
+                  "orgnlEndToEndId": "BC26041411263131",
+                  "txSts": "ACSC",
+                  "accptncDtTm": "2026-04-14T03:34:20Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      "walletBalanceEnquiryEncryptedResponseExample": {
+        "summary": "Wallet Balance Enquiry Encrypted Response Example",
+        "value": {
+          "data": {
+            "cipherMessage": "PFJlc3BvbnNlPg0KICA8UGF5bWVudElkPmI3ZTBmZGFjLWQ4YmQtNDk1MC1iZDNhLTM4ZmFjNWNjMjVkZjwvUGF5bWVudElkPg0KICA8UG2U+"
+          },
+          "meta": {
+            "version": "2.0",
+            "function": "enquiryBalance",
+            "respTime": "2025-12-15T09:54:30.590Z",
+            "instance": "3f2a9c1d-7b4e-4c8f-9a3d-1e6f0b2c4d8a"
+          }
+        }
+      },
+      "walletBalanceEnquiryDecryptedResponseExample": {
+        "summary": "Wallet Balance Enquiry Decrypted Response Example",
+        "value": {
+          "data": {
+            "payload": {
+              "balance": {
+                "id": "0a1b2c3d4f5g6h7i8j9k10l11m12n13o14p15q16r17st",
+                "bal": [
+                  {
+                    "amt": {
+                      "amt": 13.28,
+                      "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    },
+                    "holdAmt": {
+                      "amt": 0,
+                      "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "transactionEnquiryEncryptedResponseExample": {
+        "summary": "Transaction Enquiry Encrypted Response Example",
+        "value": {
+          "data": {
+            "cipherMessage": "PFJlc3BvbnNlPg0KICA8UGF5bWVudElkPmI3ZTBmZGFjLWQ4YmQtNDk1MC1iZDNhLTM4ZmFjNWNjMjVkZjwvUGF5bWVudElkPg0KICA8UG2U+"
+          },
+          "meta": {
+            "version": "2.0",
+            "function": "enquiryTransactionHistory",
+            "respTime": "2025-12-15T09:54:30.590Z",
+            "instance": "3f2a9c1d-7b4e-4c8f-9a3d-1e6f0b2c4d8a"
+          }
+        }
+      },
+      "transactionEnquiryDecryptedResponseExample": {
+        "summary": "Transaction Enquiry Decrypted Response Example",
+        "value": {
+          "data": {
+            "payload": {
+              "hvNxtPg": "N",
+              "noOfRec": 9,
+              "pmtList": [
+                {
+                  "pmtInf": {
+                    "pmtId": {
+                      "transactionId": "TK26041411263131",
+                      "endToEndIdentification": "BC26041411263131"
+                    },
+                    "pmtSts": "ACSC",
+                    "pmtTp": "PT02",
+                    "AccptncDtTm": "2026-04-14T03:33:30.456Z",
+                    "creditTransferTransactionInformation": {
+                      "creditor": {
+                        "name": "AAA Comp Lmt",
+                        "postalAddress": {
+                          "addressLines": [
+                            "111 Road",
+                            "New York"
+                          ],
+                          "TwnNm": "Amsterdam",
+                          "country": "US"
+                        }
+                      },
+                      "creditorAccount": {
+                        "name": "AAA Comp Lmt",
+                        "currency": "USD",
+                        "identification": {
+                          "other": {
+                            "identification": "000000000000000000000000000000000000000",
+                            "schemeName": {
+                              "proprietary": "WLID",
+                              "tokenProperties": {
+                                "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "creditorAgent": {
+                        "financialInstitutionIdentification": {
+                          "BIC": "MRMDUS33"
+                        }
+                      },
+                      "instructedAmount": {
+                        "amount": 8.88,
+                        "currency": "USD"
+                      },
+                      "Purp": {
+                        "Cd": "SALA"
+                      },
+                      "remittanceInformation": {
+                        "unstructured": "Remittance IT Test"
+                      }
+                    },
+                    "debtor": {
+                      "name": "AAA Comp Lmt",
+                      "postalAddress": {
+                        "addressLines": [
+                          "111 Road",
+                          "New York"
+                        ],
+                        "TwnNm": "Amsterdam",
+                        "country": "US"
+                      }
+                    },
+                    "debtorAccount": {
+                      "name": "AAA Comp Lmt",
+                      "currency": "USD",
+                      "identification": {
+                        "other": {
+                          "identification": "000000000",
+                          "schemeName": {
+                            "proprietary": "ACID",
+                            "tokenProperties": {
+                              "tokenAddress": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "debtorAgent": {
+                      "financialInstitutionIdentification": {
+                        "BIC": "MRMDUS33"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "200-Health": {
+        "value": {
+          "data": {
+            "apiVersion": "1.0.0",
+            "status": "PASS",
+            "datetime": "2026-04-28T04:11:42.704Z",
+            "hostInstanceId": "cib-apiplatform-payments-pa-tds-v1-6cf7c6bbf-mvrd9",
+            "additionalInfo": "cib-apiplatform-payments-pa-tds-v1.0.0 built at 2026-04-26T11:06:46.838Z"
+          }
+        }
+      },
+      "500-Health": {
+        "value": {
+          "error": "RJCT",
+          "error_description": "System error occurred.",
+          "referenceId": "dcff7c54-159a-430f-a5cb-726c8f388370"
+        }
+      },
+      "invalid_correlation_id": {
+        "value": {
+          "type": "/errors/request-header-error",
+          "detail": "The X-HSBC-Request-Correlation-Id in the HTTP header must be a valid UUID",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_req_body": {
+        "value": {
+          "type": "/errors/request-body-error",
+          "detail": "Request body is not in a valid JSON format.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "missing_data_element": {
+        "value": {
+          "type": "/errors/request-body-error",
+          "detail": "The request payload is invalid and does not align with the payload schema definition.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_encryption_field": {
+        "value": {
+          "type": "/errors/request-body-error",
+          "detail": "Encrypted field is invalid.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "inbound_bank_key_expired": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "Bank PGP Key used in the request has expired - Please update your system with the new Bank PGP key shared by HSBC representative.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "inbound_client_key_expired": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "Client PGP Key used in the request has expired - Please contact your HSBC representative and share the new Client PGP Key.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "payload_not_encrypted": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "The request payload is not encrypted. Please ensure the payload is properly encrypted before submission.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "payload_tampered_with": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "The encrypted payload is invalid or has been tampered with. Please verify the data integrity and try again.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_client_private_key": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "Signature verification failed. Please ensure the correct client private key is used to sign the request.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_bank_public_key": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "Encryption failed. Please ensure that the correct bank public key is used for encryption",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "missing_profile_id_or_secret": {
+        "value": {
+          "type": "authn-error/code/EDSPER2013",
+          "detail": "Unauthorized , Invalid authentication credentials.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z",
+          "title": "authn-error/code/EDSPER2013",
+          "status": 401
+        }
+      },
+      "invalid_profile_id_or_secret": {
+        "value": {
+          "type": "/authn-error/code/EDSPER2002",
+          "detail": "Unauthorized , Invalid authentication credentials.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z",
+          "title": "authn-error/code/EDSPER2013",
+          "status": 401
+        }
+      },
+      "invalid_authorization": {
+        "value": {
+          "type": "authn-error/code/EDSPER2008",
+          "detail": "Unauthorized , Invalid authentication credentials.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z",
+          "title": "authn-error/code/EDSPER2013",
+          "status": 401
+        }
+      },
+      "sanctioned_country": {
+        "value": {
+          "type": "/errors/sanction-error",
+          "detail": "Sanctioned country check failed.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "entitlement_check_failed": {
+        "value": {
+          "type": "authz-error/code/ERRAUTHZ2005",
+          "detail": "Entitlement Check failed",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "resource_not_found": {
+        "value": {
+          "type": "/errors/request-error",
+          "detail": "Resource not found.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_method": {
+        "value": {
+          "type": "/errors/request-error",
+          "detail": "Request method is not supported.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_media_type": {
+        "value": {
+          "type": "/errors/request-error",
+          "detail": "Media type is not acceptable.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "missing_content_type": {
+        "value": {
+          "type": "/errors/request-header-error",
+          "detail": "Content Type is mandatory.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_content_type": {
+        "value": {
+          "type": "/errors/request-header-error",
+          "detail": "Content Type value is not supported.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "api_call_exceeded": {
+        "value": {
+          "type": "/errors/rate-limit-error",
+          "detail": "API calls exceeded.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "crypto_tech_error": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "An error occurred during the encryption or signing process. Please contact your HSBC representative.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "trans_encryption_or_signning_failure": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "Transmission Error -  Please perform enquiry to check the latest transaction status.If the error persists, please contact your HSBC representative.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "enquiry_encryption_or_signning_failure": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "System error occurred. Please resubmit your instruction request after 60 seconds.If the error persists, please contact your HSBC representative.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "outbound_bank_key_expired": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "Bank PGP Key used in the request has expired - Please update your system with the new Bank PGP key shared by HSBC representative.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "outbound_client_key_expired": {
+        "value": {
+          "type": "/errors/crypto-error",
+          "detail": "Client PGP Key used in the request has expired - Please contact your HSBC representative and share the new Client PGP Key.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "resubmit_60_second": {
+        "value": {
+          "type": "/errors/system-error",
+          "detail": "System error occurred. Please resubmit your instruction request after 60 seconds.If the error persists, please contact your HSBC representative.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "perform_enquiry": {
+        "value": {
+          "type": "/errors/system-error",
+          "detail": "Transmission Error -  Please perform enquiry to check the latest transaction status.If the error persists, please contact your HSBC representative.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "system_maintenance": {
+        "value": {
+          "type": "/errors/service-unavailable",
+          "detail": "Due to scheduled system maintenance, service is currently unavailable. Please try again later.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "missing_mandatory_field": {
+        "value": {
+          "type": "/errors/request-body-error",
+          "detail": "Field validation message - {field} is missing.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_mandatory_field": {
+        "value": {
+          "type": "/errors/request-body-error",
+          "detail": "Field validation message - {field} is invalid",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_decryption_payload": {
+        "value": {
+          "type": "/errors/request-body-error",
+          "detail": "The decoded payload is not valid JSON format.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "duplicate_request": {
+        "value": {
+          "type": "/errors/request-error",
+          "detail": "Request is duplicated.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "ccy_not_match": {
+        "value": {
+          "type": "/errors/business-error",
+          "detail": "Token currency mismatches linked account or wallet.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "insufficient_balance": {
+        "value": {
+          "type": "/errors/business-error",
+          "detail": "Insufficient Account/Wallet balance.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "country_not_permit": {
+        "value": {
+          "type": "/errors/business-error",
+          "detail": "Transfers between the two countries are not permitted.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "violation_security_policy": {
+        "value": {
+          "type": "/errors/request-body-error",
+          "detail": "Request blocked due to security policy.",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_wallet": {
+        "value": {
+          "type": "/errors/business-error",
+          "detail": "Account is not linked to API Profile ID within HSBC systems",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      },
+      "invalid_profile": {
+        "value": {
+          "type": "/errors/business-error",
+          "detail": "Wallet is not created or not linked to the account in request",
+          "instance": "dcff7c54-159a-430f-a5cb-726c8f388370",
+          "errorDateTime": "2025-12-15T09:54:30.590Z"
+        }
+      }
+    }
+  }
+}

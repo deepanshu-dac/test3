@@ -1,0 +1,76 @@
+{
+  "id": "87178cef-65cb-4cbe-bd52-97209e45d399",
+  "name": "check dup",
+  "description": "",
+  "endpoints": [
+    {
+      "name": "GET ",
+      "description": "",
+      "method": "POST",
+      "url": "www.google.com/www.google.com",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain",
+          "enabled": true
+        },
+        {
+          "key": "key",
+          "value": "va",
+          "enabled": true
+        }
+      ],
+      "queryParams": [],
+      "pathParams": [],
+      "body": "1234",
+      "id": "181182ec-8dca-4e57-bb37-e0a2b7c8056c",
+      "createdAt": "2026-09-02T12:35:03.294Z",
+      "updatedAt": "2026-09-02T12:42:00.212Z"
+    },
+    {
+      "name": "GET ",
+      "description": "",
+      "method": "POST",
+      "url": "www.google.com/www.google.com",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain",
+          "enabled": true
+        }
+      ],
+      "queryParams": [],
+      "pathParams": [],
+      "body": "1234",
+      "id": "92b49569-448d-4f89-bcfe-21cb67e0ee99",
+      "createdAt": "2026-09-02T12:35:26.480Z",
+      "updatedAt": "2026-09-02T12:37:06.205Z"
+    },
+    {
+      "name": "GET ",
+      "description": "",
+      "method": "GET",
+      "url": "www.google.com/country/www.google.com/country",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "enabled": true
+        },
+        {
+          "key": "k",
+          "value": "k",
+          "enabled": true
+        }
+      ],
+      "queryParams": [],
+      "pathParams": [],
+      "body": "",
+      "id": "a8f633c9-09b7-4eb6-893b-773d267df3be",
+      "createdAt": "2026-09-02T12:42:43.750Z",
+      "updatedAt": "2026-09-02T12:43:31.443Z"
+    }
+  ],
+  "createdAt": "2026-09-02T12:34:36.959Z",
+  "updatedAt": "2026-09-02T12:43:31.443Z"
+}
