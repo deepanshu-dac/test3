@@ -1,0 +1,52 @@
+{
+  "id": "790b15ca-f67f-4fd0-9037-16293351d07f",
+  "name": "check duplicate",
+  "description": "",
+  "endpoints": [
+    {
+      "name": "1",
+      "description": "",
+      "method": "GET",
+      "url": "www.google.com",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "enabled": true
+        }
+      ],
+      "queryParams": [],
+      "pathParams": [],
+      "body": "",
+      "id": "2ca0487b-ecd2-46ff-af99-8ee946f53cd5",
+      "createdAt": "2026-09-02T13:13:30.656Z",
+      "updatedAt": "2026-09-02T13:14:35.433Z"
+    },
+    {
+      "name": "2",
+      "description": "",
+      "method": "GET",
+      "url": "www.google.com/",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json",
+          "enabled": true
+        },
+        {
+          "key": "a",
+          "value": "a",
+          "enabled": true
+        }
+      ],
+      "queryParams": [],
+      "pathParams": [],
+      "body": "",
+      "id": "b0df8d86-91ce-4e4c-898b-43a005580111",
+      "createdAt": "2026-09-02T13:13:43.684Z",
+      "updatedAt": "2026-09-02T13:16:01.156Z"
+    }
+  ],
+  "createdAt": "2026-09-02T13:13:12.920Z",
+  "updatedAt": "2026-09-02T13:16:01.156Z"
+}

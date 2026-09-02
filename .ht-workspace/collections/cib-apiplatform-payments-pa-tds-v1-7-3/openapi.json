@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "Tokenised Deposit Service",
-    "description": "### Introduction \nTransform treasury and liquidity management by integrating real-time tokenised deposit balances and internal value transfers across HSBC’s permissioned distributed ledger. TDS APIs enable corporate customers to automate workflows, increase visibility, and optimize funding, leveraging HSBC’s innovation in digital assets.\n#### Key Features\n* The Token Operations API enables HSBC corporate customers to create, transfer, and redeem tokenised deposits securely and in real time, directly within the bank’s distributed ledger environment.\n\n* The Wallet Balance Enquiry API provides real-time visibility of tokenised deposit holdings across HSBC Blockchain Wallets, supporting efficient liquidity management and operational oversight.\n\n* The Wallet Transactions Enquiry API provides automated, real-time access to detailed records of tokenised value movements within HSBC Blockchain Wallets, enhancing transparency, reconciliation, and operational control.\n\n### Version History\nChange log and release history:\n|  Version  |  Dates  |  Notes  |\n|-------|------------|------|\n|  1.0  |  2026-04  |  Initial release of the TDS API. |\n\n\n### Authentication and Authorization\nAPI Authentication is performed using either ProfileID/Secret or a signed JSON Web Token (JWT). The token must be provided in the header of the HTTP request every time you\ninvoke HSBC's API services. This ensures only authorised and pre-approved organisations can access and utilise our API services. \nClient Can be either Basic or Bearer token. Basic token like \"Basic Base64(&lt;profile-id&gt;:&lt;client-secret&gt;); While Bearer token like \"JWS &lt;JWT token&gt;\"\nPlease refer to the Security section.\n### Response and Error Codes\nThe API uses common HTTP status codes in the response header to indicate success or failure. Specific error code and description will be returned in the custom error schema.\n",
+    "description": "### Introduction \nTransform treasury and liquidity management by integrating real-time tokenised deposit balances and internal value transfers across HSBCâs permissioned distributed ledger. TDS APIs enable corporate customers to automate workflows, increase visibility, and optimize funding, leveraging HSBCâs innovation in digital assets.\n#### Key Features\n* The Token Operations API enables HSBC corporate customers to create, transfer, and redeem tokenised deposits securely and in real time, directly within the bankâs distributed ledger environment.\n\n* The Wallet Balance Enquiry API provides real-time visibility of tokenised deposit holdings across HSBC Blockchain Wallets, supporting efficient liquidity management and operational oversight.\n\n* The Wallet Transactions Enquiry API provides automated, real-time access to detailed records of tokenised value movements within HSBC Blockchain Wallets, enhancing transparency, reconciliation, and operational control.\n\n### Version History\nChange log and release history:\n|  Version  |  Dates  |  Notes  |\n|-------|------------|------|\n|  1.0  |  2026-04  |  Initial release of the TDS API. |\n\n\n### Authentication and Authorization\nAPI Authentication is performed using either ProfileID/Secret or a signed JSON Web Token (JWT). The token must be provided in the header of the HTTP request every time you\ninvoke HSBC's API services. This ensures only authorised and pre-approved organisations can access and utilise our API services. \nClient Can be either Basic or Bearer token. Basic token like \"Basic Base64(&lt;profile-id&gt;:&lt;client-secret&gt;); While Bearer token like \"JWS &lt;JWT token&gt;\"\nPlease refer to the Security section.\n### Response and Error Codes\nThe API uses common HTTP status codes in the response header to indicate success or failure. Specific error code and description will be returned in the custom error schema.\n",
     "version": "1"
   },
   "servers": [
@@ -45,7 +45,7 @@
         "tags": [
           "Token Operations API"
         ],
-        "description": "The Token Operations API enables HSBC corporate customers to create, transfer, and redeem tokenised deposits securely and in real time, directly within the bank’s distributed ledger environment.",
+        "description": "The Token Operations API enables HSBC corporate customers to create, transfer, and redeem tokenised deposits securely and in real time, directly within the bankâs distributed ledger environment.",
         "parameters": [
           {
             "$ref": "#/components/parameters/content-type"
@@ -217,13 +217,13 @@
     },
     "/v1/callbackUrl": {
       "summary": "Token transaction status update(Client Webhook)",
-      "description": "HSBC will send push notifications to the client’s registered endpoint when relevant events occur. This is a webhook style callback, where HSBC acts as the caller and the client provides the service endpoint.\n",
+      "description": "HSBC will send push notifications to the clientâs registered endpoint when relevant events occur. This is a webhook style callback, where HSBC acts as the caller and the client provides the service endpoint.\n",
       "post": {
         "summary": "Token transaction status update",
         "tags": [
           "Token transaction status update(Client Webhook)"
         ],
-        "description": "HSBC sends a POST request to the client’s endpoint when a Token Operation event occurs.",
+        "description": "HSBC sends a POST request to the clientâs endpoint when a Token Operation event occurs.",
         "parameters": [
           {
             "$ref": "#/components/parameters/client-id"
@@ -298,7 +298,7 @@
         }
       },
       "client-id": {
-        "description": "Client ID assigned by the client to HSBC, used by HSBC for authentication when invoking the client’s endpoint.",
+        "description": "Client ID assigned by the client to HSBC, used by HSBC for authentication when invoking the clientâs endpoint.",
         "in": "header",
         "name": "Client-Id",
         "required": true,
@@ -310,7 +310,7 @@
         }
       },
       "client-secret": {
-        "description": "Client secret assigned by the client to HSBC, used by HSBC for authentication when invoking the client’s endpoint.",
+        "description": "Client secret assigned by the client to HSBC, used by HSBC for authentication when invoking the clientâs endpoint.",
         "in": "header",
         "name": "Client-Secret",
         "required": true,
